@@ -1,6 +1,8 @@
 // src/app/assessment/_components/Scorecard.tsx
 'use client';
 
+import { type DomainResult } from '~/lib/scoring';
+
 // A helper to determine the bar color based on the score
 const getBarColor = (score: number) => {
   if (score < 2) return 'bg-red-500';
@@ -8,7 +10,8 @@ const getBarColor = (score: number) => {
   return 'bg-green-500';
 };
 
-export const Scorecard = ({ domainName, domainResults, targetScore }: { domainName: string, domainResults: any, targetScore?: number }) => {
+// UPDATE: Props are now strongly typed with DomainResult
+export const Scorecard = ({ domainName, domainResults }: { domainName: string; domainResults: DomainResult }) => {
   return (
     <div className="mb-8 rounded-lg border bg-white p-6 shadow-sm">
       <div className="flex items-center justify-between border-b pb-3 mb-3">
@@ -19,7 +22,8 @@ export const Scorecard = ({ domainName, domainResults, targetScore }: { domainNa
         </div>
       </div>
       <div className="space-y-4">
-        {Object.values(domainResults.subdomains).map((subdomain: any) => (
+        {/* TypeScript now knows what 'subdomain' is, so all access is safe */}
+        {Object.values(domainResults.subdomains).map((subdomain) => (
           <div key={subdomain.name} className="grid grid-cols-3 items-center gap-4">
             <span className="font-medium col-span-1">{subdomain.name}</span>
             <div className="col-span-2 flex items-center gap-4">

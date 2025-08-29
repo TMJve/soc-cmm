@@ -1,25 +1,41 @@
 // src/lib/scoring.ts
 
-function getValueFromPath(obj: Record<string, any>, path: string) {
-  return path.split('.').reduce((acc, part) => acc && acc[part], obj);
-}
+import { assessmentModel, QuestionType, type Domain, type Subdomain } from './socmm-schema';
 
-import { assessmentModel, QuestionType } from './socmm-schema';
-import { type Domain, type Subdomain } from './socmm-schema';
+// This is the shape of the user's answers, which can be deeply nested.
+type AssessmentAnswers = Record<string, unknown>;
 
-type AssessmentAnswers = Record<string, any>;
+// The precise shapes for our results data
+export type SubdomainResult = { name: string; score: number; };
+export type DomainResult = { name: string; score: number; subdomains: Record<string, SubdomainResult>; };
+export type Results = Record<string, DomainResult>;
 
 /**
- * Calculates the maturity score for a single subdomain using normalization.
+ * A completely type-safe helper function to get a nested property from an object.
+ * This version is designed to pass strict TypeScript ESLint rules.
+ * @param obj The object to search within.
+ * @param path The dot-notation path to the property.
+ * @returns The value if found, otherwise undefined.
  */
-function calculateSubdomainScore(subdomain: Subdomain, answers: AssessmentAnswers): number {
-  const scorableQuestions = subdomain.questions.filter(
-    (q) => q.type === QuestionType.SELECT
-  );
+function getValueFromPath(obj: AssessmentAnswers, path: string): unknown {
+  const parts = path.split('.');
+  let current: unknown = obj;
 
-  if (scorableQuestions.length === 0) {
-    return 0;
+  for (const part of parts) {
+    // Type guard to ensure we can index the current value
+    if (typeof current === 'object' && current !== null && part in current) {
+      current = (current as Record<string, unknown>)[part];
+    } else {
+      return undefined; // Path does not exist
+    }
   }
+  return current;
+}
+
+
+function calculateSubdomainScore(subdomain: Subdomain, answers: AssessmentAnswers): number {
+  const scorableQuestions = subdomain.questions.filter((q) => q.type === QuestionType.SELECT);
+  if (scorableQuestions.length === 0) return 0;
 
   const minPossibleScore = scorableQuestions.length * 1;
   const maxPossibleScore = scorableQuestions.length * 5;
@@ -28,18 +44,16 @@ function calculateSubdomainScore(subdomain: Subdomain, answers: AssessmentAnswer
   scorableQuestions.forEach((question) => {
     const answerValue = getValueFromPath(answers, question.id);
     
-    // THE FIX IS HERE: We add a check to ensure the value is a string before parsing it.
+    // This check handles the 'unknown' return type from our safe helper function
     if (typeof answerValue === 'string') {
       const parsedValue = parseInt(answerValue, 10);
-      if (!isNaN(parsedValue)) { // Ensure it's a valid number
+      if (!isNaN(parsedValue)) {
         actualScore += parsedValue;
       }
     }
   });
 
-  if (actualScore === 0) {
-    return 0;
-  }
+  if (actualScore === 0) return 0;
 
   const normalizedScore = (actualScore - minPossibleScore) / (maxPossibleScore - minPossibleScore);
   let finalScore = 5 * normalizedScore;
@@ -48,17 +62,12 @@ function calculateSubdomainScore(subdomain: Subdomain, answers: AssessmentAnswer
   return parseFloat(finalScore.toFixed(2));
 }
 
-/**
- * Calculates the overall maturity score for a whole domain.
- */
 function calculateDomainScore(domain: Domain, answers: AssessmentAnswers): number {
   const subdomainScores = domain.subdomains
     .map((subdomain) => calculateSubdomainScore(subdomain, answers))
     .filter((score) => score >= 0);
 
-  if (subdomainScores.length === 0) {
-    return 0;
-  }
+  if (subdomainScores.length === 0) return 0;
 
   const totalScore = subdomainScores.reduce((sum, score) => sum + score, 0);
   const averageScore = totalScore / subdomainScores.length;
@@ -66,25 +75,21 @@ function calculateDomainScore(domain: Domain, answers: AssessmentAnswers): numbe
   return parseFloat(averageScore.toFixed(2));
 }
 
-/**
- * The main orchestrator function we'll call from our UI.
- */
-export function calculateAllScores(answers: AssessmentAnswers) {
-  const results: Record<string, any> = {};
+export function calculateAllScores(answers: AssessmentAnswers): Results {
+  const results: Results = {};
   assessmentModel.forEach((domain) => {
-    const domainScore = calculateDomainScore(domain, answers);
-    results[domain.id] = {
+    const domainResult: DomainResult = {
       name: domain.name,
-      score: domainScore,
+      score: calculateDomainScore(domain, answers),
       subdomains: {},
     };
     domain.subdomains.forEach((subdomain) => {
-      const subdomainScore = calculateSubdomainScore(subdomain, answers);
-      results[domain.id].subdomains[subdomain.id] = {
+      domainResult.subdomains[subdomain.id] = {
         name: subdomain.name,
-        score: subdomainScore,
+        score: calculateSubdomainScore(subdomain, answers),
       };
     });
+    results[domain.id] = domainResult;
   });
   return results;
 }

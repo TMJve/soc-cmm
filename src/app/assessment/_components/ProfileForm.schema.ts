@@ -1,6 +1,7 @@
-
+// src/app/assessment/_components/ProfileForm.schema.ts
 import { z } from 'zod';
 
+// Zod schema for validation, with all fields
 export const profileSchema = z.object({
   // Assessment Details
   assessmentDate: z.string(),

@@ -11,7 +11,7 @@ import { type ProfileFormData } from '~/app/assessment/_components/ProfileForm.s
  * The key is the question's unique ID (e.g., 'business.drivers.identified'),
  * and the value is the score or text the user entered.
  */
-type AssessmentAnswers = Record<string, number | string | boolean | string[]>;
+export type AssessmentAnswers = Record<string, number | string | boolean | string[]>;
 
 /**
  * This is the master type for our entire store. It defines:

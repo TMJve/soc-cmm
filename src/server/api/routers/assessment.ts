@@ -1,20 +1,19 @@
+// src/server/api/routers/assessment.ts
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
 export const assessmentRouter = createTRPCRouter({
   submitAnswers: publicProcedure
     .input(
-      z.array(
-        z.object({
-          questionId: z.string(),
-          domain: z.string(),
-          score: z.number().min(0).max(5),
-        })
-      )
+      // Use z.record and z.any() for flexibility on the backend
+      z.object({
+        answers: z.record(z.any()), 
+      })
     )
-    .mutation(async ({ input, ctx }) => {
+    // FIX: Remove '_ctx' from the parameters
+    .mutation(async ({ input }) => { 
       // TODO: Save to DB when ready
-      console.log("Received answers:", input);
+      console.log("Received answers:", input.answers);
       return { success: true };
     }),
 });

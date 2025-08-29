@@ -3,22 +3,19 @@
 
 import { FormProvider, useForm } from 'react-hook-form';
 import { assessmentModel } from '~/lib/socmm-schema';
-import { api } from '~/trpc/react';
-import { useAppStore } from '~/lib/store';
+// import { api } from '~/trpc/react';
+import { useAppStore, type AssessmentAnswers } from '~/lib/store'; // Import the type here
 import { DomainRenderer } from './DomainRenderer';
 
 export function AssessmentForm() {
   const methods = useForm();
   const { setAnswers } = useAppStore(); 
-  const submitMutation = api.assessment.submitAnswers.useMutation();
+  // const submitMutation = api.assessment.submitAnswers.useMutation();
 
-  const onSubmit = (data: Record<string, any>) => {
-    console.log('CHECKPOINT #1: Data from form onSubmit:', data);
+  // Use the specific 'AssessmentAnswers' type for the data
+  const onSubmit = (data: AssessmentAnswers) => {
     console.log('Final Assessment Data:', data);
-    
     setAnswers(data);
-    
-
   };
 
   return (

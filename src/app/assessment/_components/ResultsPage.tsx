@@ -14,17 +14,18 @@ export default function ResultsPage() {
     <div className="mx-auto max-w-4xl space-y-8">
       <div className="rounded-lg bg-white p-8 text-center shadow-lg">
         <h1 className="text-4xl font-extrabold">Assessment Results</h1>
+        {/* FIX: Use nullish coalescing operator (??) for safer defaults */}
         <p className="mt-2 text-lg text-gray-600">
-          For: <strong>{profileData?.names || 'N/A'}</strong> on <strong>{profileData?.assessmentDate || 'N/A'}</strong>
+          For: <strong>{profileData?.names ?? 'N/A'}</strong> on <strong>{profileData?.assessmentDate ?? 'N/A'}</strong>
         </p>
       </div>
 
       <div>
-        {/* We now map over our results and render a Scorecard for each domain */}
+        {/* This is now type-safe, no 'any' needed */}
         {Object.entries(results).map(([domainId, domainResults]) => (
           <Scorecard 
             key={domainId} 
-            domainName={(domainResults as any).name} 
+            domainName={domainResults.name} 
             domainResults={domainResults} 
           />
         ))}

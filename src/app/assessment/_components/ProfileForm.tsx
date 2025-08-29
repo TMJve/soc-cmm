@@ -1,17 +1,17 @@
 // src/app/assessment/_components/ProfileForm.tsx
 'use client';
 
-import { useForm, type SubmitHandler } from 'react-hook-form';
+import { useForm, type SubmitHandler, type UseFormRegister } from 'react-hook-form'; // Import UseFormRegister
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppStore } from '~/lib/store';
 import { profileSchema, type ProfileFormData } from './ProfileForm.schema';
 import React from 'react';
 
-// A helper component to generate the score dropdowns to keep our code clean
-const ScoreSelect = ({ name, register, range }: { name: keyof ProfileFormData, register: any, range: '1-5' | '1-3' }) => {
+// FIX: Give 'register' its proper type to remove 'any'
+const ScoreSelect = ({ name, register, range }: { name: keyof ProfileFormData, register: UseFormRegister<ProfileFormData>, range: '1-5' | '1-3' }) => {
   const options = range === '1-5'
-    ? Array.from({ length: 41 }, (_, i) => (1 + i * 0.1).toFixed(1)) // 1.0 to 5.0
-    : Array.from({ length: 21 }, (_, i) => (1 + i * 0.1).toFixed(1)); // 1.0 to 3.0
+    ? Array.from({ length: 41 }, (_, i) => (1 + i * 0.1).toFixed(1))
+    : Array.from({ length: 21 }, (_, i) => (1 + i * 0.1).toFixed(1));
 
   return (
     <select {...register(name)} className="w-full rounded border p-2">
@@ -84,7 +84,6 @@ export default function ProfileForm() {
         Assessment Profile
       </h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-12">
-        {/* --- Section 1: Assessment Details --- */}
         <section>
           <h2 className="text-xl font-semibold mb-4">Assessment Details</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -120,8 +119,6 @@ export default function ProfileForm() {
             </div>
           </div>
         </section>
-
-        {/* --- Section 2: Organisation & SOC Profile --- */}
         <section>
           <h2 className="text-xl font-semibold mb-4">Organisation & SOC Profile</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -137,8 +134,6 @@ export default function ProfileForm() {
             </div>
           </div>
         </section>
-
-        {/* --- Section 3: Target Maturity (optional) --- */}
         <section>
           <h2 className="text-xl font-semibold mb-4">Target Maturity (optional)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -150,8 +145,6 @@ export default function ProfileForm() {
             ))}
           </div>
         </section>
-
-        {/* --- Section 4: Target Capability (optional) --- */}
         <section>
           <h2 className="text-xl font-semibold mb-4">Target Capability (optional)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -163,13 +156,10 @@ export default function ProfileForm() {
             ))}
           </div>
         </section>
-
-        {/* --- Section 5: Notes or comments --- */}
         <section>
           <h2 className="text-xl font-semibold mb-4">Notes or comments</h2>
            <textarea id="notes" {...register('notes')} rows={4} className="w-full rounded border p-2"/>
         </section>
-
         <div className="flex justify-end pt-4">
           <button type="submit" className="rounded-lg bg-blue-600 px-8 py-3 font-semibold text-white hover:bg-blue-700">
             Next: Start Assessment
