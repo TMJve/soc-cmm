@@ -3,7 +3,6 @@
 
 import { useFormContext } from 'react-hook-form';
 import { type Question, QuestionType, IMPORTANCE_LEVELS } from '~/lib/socmm-schema';
-// REMOVED: No more 'calculateCompleteness' import
 
 // A small helper component for the Importance dropdown
 const ImportanceSelect = ({ fieldName }: { fieldName: string }) => {
@@ -17,14 +16,15 @@ const ImportanceSelect = ({ fieldName }: { fieldName: string }) => {
   );
 };
 
-// REMOVED: The entire 'CompletenessDisplay' component is gone.
-
 export const QuestionRenderer = ({ question }: { question: Question }) => {
-  const { register } = useFormContext();
+  // UPDATED: We now need watch and errors from the form context
+  const { register, watch, formState: { errors } } = useFormContext();
+
+  // Watch the value of the current question's dropdown in real-time
+  const watchedValue = watch(question.id);
 
   const renderQuestion = () => {
     switch (question.type) {
-      // REMOVED: The 'COMPLETENESS_INDICATOR' case is gone.
       case QuestionType.SELECT:
         return (
           <select {...register(question.id)} className="w-full border rounded p-2">
@@ -68,16 +68,21 @@ export const QuestionRenderer = ({ question }: { question: Question }) => {
           />
         );
       default:
-        // This case should now never be reached if your schema is correct
         return <p>Unsupported question type: {question.type}</p>;
     }
   };
   
-  // REMOVED: The special 'if' block for the indicator is gone.
+  // ADDED: A helper to determine if the evidence field should be shown
+  const showEvidence = question.evidence && (
+    Array.isArray(question.evidence.triggerValue)
+      ? question.evidence.triggerValue.includes(watchedValue)
+      : watchedValue === question.evidence.triggerValue
+  );
 
   return (
     <div className="py-4">
       <label className="block font-medium mb-2">{question.label}</label>
+      
       <div className="flex items-center gap-4">
         <div className="flex-grow">{renderQuestion()}</div>
         {question.hasImportance && (
@@ -86,6 +91,25 @@ export const QuestionRenderer = ({ question }: { question: Question }) => {
           </div>
         )}
       </div>
+
+      {/* ADDED: The conditional evidence field */}
+      {showEvidence && (
+        <div className="mt-4 pl-4 border-l-2 border-blue-500">
+          <label className="block font-medium mb-2 text-sm text-gray-700">
+            {question.evidence!.label}
+          </label>
+          <input
+            type="text"
+            className="w-full rounded border p-2 text-sm"
+            placeholder="e.g., //sharepoint/docs/soc-drivers.docx"
+            // We create a unique name for this evidence field and make it required
+            {...register(`${question.id}_evidence`, { required: 'This field is required.' })}
+          />
+          {errors[`${question.id}_evidence`] && (
+            <p className="mt-1 text-sm text-red-600">{(errors[`${question.id}_evidence`] as any).message}</p>
+          )}
+        </div>
+      )}
     </div>
   );
 };

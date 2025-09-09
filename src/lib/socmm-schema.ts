@@ -27,7 +27,10 @@ export type Question = {
   type: (typeof QuestionType)[keyof typeof QuestionType];
   options?: { value: string; label: string }[];
   hasImportance?: boolean;
-//  dependsOn?: string; // ADD THIS LINE
+  evidence?: {
+    triggerValue: string | string[];// The answer that shows the text field (e.g., '5')
+    label: string;      // The label for the text field (e.g., 'Path to document:')
+  };
 };
 
 export type Subdomain = {
@@ -41,6 +44,8 @@ export type Domain = {
   id: string;
   name: string;
   subdomains: readonly Subdomain[];
+  domainTooltipText?: string;   // ADD THIS LINE
+  domainLearnMoreUrl?: string; // ADD THIS LINE
 };
 
 // ============================================================================
@@ -52,6 +57,8 @@ export const assessmentModel: readonly Domain[] = [
   {
     id: 'business',
     name: 'Business',
+    domainTooltipText: 'The Business domain assesses the alignment of the SOC with the organization\'s overall goals and strategic objectives.',
+    domainLearnMoreUrl: 'https://www.sans.org/white-papers/38197/',
     subdomains: [
       {
         id: 'drivers',
@@ -75,6 +82,10 @@ export const assessmentModel: readonly Domain[] = [
             label: 'Have you documented the main business drivers?',
             type: QuestionType.SELECT,
             hasImportance: true,
+            evidence: {
+              triggerValue: ['2', '3', '4', '5'],
+              label: 'Path to document (URL or file path):',
+            },
             options: [
               { value: '1', label: 'No: No documentation in place' },
               { value: '2', label: 'Partially: Some ad-hoc information across documents' },
