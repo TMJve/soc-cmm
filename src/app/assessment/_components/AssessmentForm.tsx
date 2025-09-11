@@ -3,16 +3,14 @@
 
 import { FormProvider, useForm } from 'react-hook-form';
 import { assessmentModel } from '~/lib/socmm-schema';
-// import { api } from '~/trpc/react';
-import { useAppStore, type AssessmentAnswers } from '~/lib/store'; // Import the type here
+import { useAppStore, type AssessmentAnswers } from '~/lib/store';
 import { DomainRenderer } from './DomainRenderer';
+import { InfoBox } from './InfoBox'; // 1. Import the new InfoBox component
 
 export function AssessmentForm() {
   const methods = useForm();
   const { setAnswers } = useAppStore(); 
-  // const submitMutation = api.assessment.submitAnswers.useMutation();
 
-  // Use the specific 'AssessmentAnswers' type for the data
   const onSubmit = (data: AssessmentAnswers) => {
     console.log('Final Assessment Data:', data);
     setAnswers(data);
@@ -21,6 +19,10 @@ export function AssessmentForm() {
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
+        
+        {/* 2. Add the InfoBox component right at the top of the form */}
+        <InfoBox />
+
         <div className="space-y-12">
           {assessmentModel.map((domain) => (
             <DomainRenderer key={domain.id} domain={domain} />
