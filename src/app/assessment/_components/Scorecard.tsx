@@ -2,6 +2,7 @@
 'use client';
 
 import { type DomainResult } from '~/lib/scoring';
+import { RecommendationCard } from './RecommendationCard'; // 1. Import the new component
 
 // A helper to determine the bar color based on the score
 const getBarColor = (score: number) => {
@@ -10,7 +11,6 @@ const getBarColor = (score: number) => {
   return 'bg-green-500';
 };
 
-// UPDATE: Props are now strongly typed with DomainResult
 export const Scorecard = ({ domainName, domainResults }: { domainName: string; domainResults: DomainResult }) => {
   return (
     <div className="mb-8 rounded-lg border bg-white p-6 shadow-sm">
@@ -22,7 +22,6 @@ export const Scorecard = ({ domainName, domainResults }: { domainName: string; d
         </div>
       </div>
       <div className="space-y-4">
-        {/* TypeScript now knows what 'subdomain' is, so all access is safe */}
         {Object.values(domainResults.subdomains).map((subdomain) => (
           <div key={subdomain.name} className="grid grid-cols-3 items-center gap-4">
             <span className="font-medium col-span-1">{subdomain.name}</span>
@@ -39,6 +38,9 @@ export const Scorecard = ({ domainName, domainResults }: { domainName: string; d
           </div>
         ))}
       </div>
+
+      {/* 2. Add the RecommendationCard component at the bottom */}
+      <RecommendationCard domainName={domainName} score={domainResults.score} />
     </div>
   );
 };
