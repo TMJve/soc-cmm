@@ -2,7 +2,6 @@
 
 import { assessmentModel, QuestionType, type Domain, type Subdomain } from './socmm-schema';
 
-// This is the shape of the user's answers, which can be deeply nested.
 type AssessmentAnswers = Record<string, unknown>;
 
 // The precise shapes for our results data
@@ -11,45 +10,45 @@ export type DomainResult = { name: string; score: number; subdomains: Record<str
 export type Results = Record<string, DomainResult>;
 
 /**
- * A completely type-safe helper function to get a nested property from an object.
+ * A final, foolproof, and 100% type-safe helper function.
+ * This version uses explicit type guards to satisfy the strict linter.
  */
 function getValueFromPath(obj: AssessmentAnswers, path: string): unknown {
-  let current: any = obj;
-  for (const key of path.split('.')) {
-    if (current === null || current === undefined) {
+  const keys = path.split('.');
+  let current: unknown = obj;
+
+  for (const key of keys) {
+    if (typeof current !== 'object' || current === null || !(key in current)) {
       return undefined;
     }
-    current = current[key];
+    current = (current as Record<string, unknown>)[key];
   }
+
   return current;
 }
 
-// NEW: These are the correct weights from your spreadsheet.
+
+// These are the correct weights from your spreadsheet.
 const IMPORTANCE_WEIGHTS = {
-  critical: 4.0,   // Score quadrupled
-  high: 2.0,     // Score doubled
-  normal: 1.0,     // Score not affected
-  low: 0.5,      // Score divided by 2
-  none: 0,       // Not included in scoring
+  critical: 4.0,
+  high: 2.0,
+  normal: 1.0,
+  low: 0.5,
+  none: 0,
 };
 
-// NEW: A helper to safely get the weight for a given importance value
+// A helper to safely get the weight for a given importance value
 function getWeight(answers: AssessmentAnswers, questionId: string): number {
   const importanceKey = `${questionId}_importance`;
   const importanceValue = getValueFromPath(answers, importanceKey) as keyof typeof IMPORTANCE_WEIGHTS;
-  // Default to 'normal' weight (1.0) if no importance is selected
   return IMPORTANCE_WEIGHTS[importanceValue] ?? 1.0;
 }
 
-/**
- * UPDATED: This function now calculates a weighted average score.
- */
 function calculateSubdomainScore(subdomain: Subdomain, answers: AssessmentAnswers): number {
   const scorableQuestions = subdomain.questions.filter(
     (q) => q.type === QuestionType.SELECT && q.hasImportance
   );
 
-  // Fallback for subdomains that might not use the importance system
   if (scorableQuestions.length === 0) {
     const simpleScorable = subdomain.questions.filter((q) => q.type === QuestionType.SELECT);
     if (simpleScorable.length === 0) return 0;
@@ -78,18 +77,16 @@ function calculateSubdomainScore(subdomain: Subdomain, answers: AssessmentAnswer
     
     const weight = getWeight(answers, question.id);
 
-    // Only include answered questions in the calculation if their weight is not 0
     if (score > 0 && weight > 0) {
       totalWeightedScore += score * weight;
-      totalMaximumWeightedScore += 5 * weight; // Max possible score for a question is 5
+      totalMaximumWeightedScore += 5 * weight;
     }
   });
 
   if (totalMaximumWeightedScore === 0) {
-    return 0; // Avoid division by zero
+    return 0;
   }
 
-  // Scale the weighted average to a 0-5 score
   const finalScore = 5 * (totalWeightedScore / totalMaximumWeightedScore);
 
   return parseFloat(finalScore.toFixed(2));
@@ -100,9 +97,7 @@ function calculateDomainScore(domain: Domain, answers: AssessmentAnswers): numbe
     .map((subdomain) => calculateSubdomainScore(subdomain, answers))
     .filter((score) => score >= 0);
 
-  if (subdomainScores.length === 0) {
-    return 0;
-  }
+  if (subdomainScores.length === 0) return 0;
 
   const totalScore = subdomainScores.reduce((sum, score) => sum + score, 0);
   const averageScore = totalScore / subdomainScores.length;

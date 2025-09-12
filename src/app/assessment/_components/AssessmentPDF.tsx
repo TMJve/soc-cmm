@@ -1,6 +1,6 @@
 // src/app/assessment/_components/AssessmentPDF.tsx
 import React from 'react';
-import { Page, Text, View, Document, StyleSheet, Font } from '@react-pdf/renderer';
+import { Page, Text, View, Document, StyleSheet } from '@react-pdf/renderer';
 import { type Results } from '~/lib/scoring';
 import { type ProfileFormData } from './ProfileForm.schema';
 
