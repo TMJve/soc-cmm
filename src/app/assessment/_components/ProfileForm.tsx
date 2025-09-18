@@ -1,13 +1,35 @@
 // src/app/assessment/_components/ProfileForm.tsx
 'use client';
 
-import { useForm, type SubmitHandler, type UseFormRegister } from 'react-hook-form'; // Import UseFormRegister
+import { useForm, type SubmitHandler, type UseFormRegister } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppStore } from '~/lib/store';
 import { profileSchema, type ProfileFormData } from './ProfileForm.schema';
 import React from 'react';
 
-// FIX: Give 'register' its proper type to remove 'any'
+// Define constants for our dropdown options
+const ASSESSMENT_TYPES = [
+  { value: 'quick-scan', label: 'Quick Scan' },
+  { value: 'scoped', label: 'Scoped Assessment' },
+  { value: 'initial', label: 'Initial Assessment (Baseline)' },
+  { value: 'progress', label: 'Progress Assessment' },
+];
+
+const ASSESSMENT_STYLES = [
+  { value: 'self', label: 'Self Assessment' },
+  { value: 'guided-self', label: 'Guided Self Assessment' },
+  { value: '3rd-party', label: '3rd Party Assessment' },
+];
+
+const SOC_REGIONS = [
+  { value: 'north-america', label: 'North America' },
+  { value: 'south-america', label: 'South America' },
+  { value: 'europe', label: 'Europe' },
+  { value: 'asia-pacific', label: 'Asia-Pacific' },
+  { value: 'middle-east-africa', label: 'Middle East & Africa' },
+];
+
+
 const ScoreSelect = ({ name, register, range }: { name: keyof ProfileFormData, register: UseFormRegister<ProfileFormData>, range: '1-5' | '1-3' }) => {
   const options = range === '1-5'
     ? Array.from({ length: 41 }, (_, i) => (1 + i * 0.1).toFixed(1))
@@ -60,7 +82,6 @@ export default function ProfileForm() {
     { name: 'socYears', label: 'Number of years of SOC operations' },
     { name: 'socFTE', label: 'SOC size (FTEs)' },
     { name: 'socModel', label: 'SOC organisational model' },
-    { name: 'socRegion', label: 'SOC region' },
   ] as const;
 
   const maturityFields = [
@@ -101,10 +122,18 @@ export default function ProfileForm() {
               <input id="departments" {...register('departments')} className="w-full rounded border p-2"/>
               {errors.departments && <p className="mt-1 text-sm text-red-600">{errors.departments.message}</p>}
             </div>
+            
+            {/* UPDATED: Assessment Type is now a dropdown */}
             <div>
               <label htmlFor="assessmentType" className="mb-1 block font-medium">Assessment type</label>
-              <input id="assessmentType" {...register('assessmentType')} className="w-full rounded border p-2"/>
+              <select id="assessmentType" {...register('assessmentType')} className="w-full rounded border p-2">
+                <option value="">Select a type...</option>
+                {ASSESSMENT_TYPES.map(type => (
+                  <option key={type.value} value={type.value}>{type.label}</option>
+                ))}
+              </select>
             </div>
+
             <div className="md:col-span-2">
               <label htmlFor="purpose" className="mb-1 block font-medium">Intended purpose of the assessment</label>
               <textarea id="purpose" {...register('purpose')} rows={3} className="w-full rounded border p-2"/>
@@ -113,12 +142,20 @@ export default function ProfileForm() {
               <label htmlFor="scope" className="mb-1 block font-medium">Scope</label>
               <textarea id="scope" {...register('scope')} rows={2} className="w-full rounded border p-2"/>
             </div>
+
+             {/* UPDATED: Assessment Style is now a dropdown */}
              <div>
               <label htmlFor="assessmentStyle" className="mb-1 block font-medium">Assessment style</label>
-              <input id="assessmentStyle" {...register('assessmentStyle')} className="w-full rounded border p-2"/>
+              <select id="assessmentStyle" {...register('assessmentStyle')} className="w-full rounded border p-2">
+                <option value="">Select a style...</option>
+                {ASSESSMENT_STYLES.map(style => (
+                  <option key={style.value} value={style.value}>{style.label}</option>
+                ))}
+              </select>
             </div>
           </div>
         </section>
+
         <section>
           <h2 className="text-xl font-semibold mb-4">Organisation & SOC Profile</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -128,12 +165,25 @@ export default function ProfileForm() {
                 <input id={field.name} {...register(field.name)} className="w-full rounded border p-2"/>
               </div>
             ))}
+
+            {/* UPDATED: SOC Region is now a dropdown */}
+            <div>
+              <label htmlFor="socRegion" className="mb-1 block font-medium">SOC region</label>
+              <select id="socRegion" {...register('socRegion')} className="w-full rounded border p-2">
+                <option value="">Select a region...</option>
+                {SOC_REGIONS.map(region => (
+                  <option key={region.value} value={region.value}>{region.label}</option>
+                ))}
+              </select>
+            </div>
+
             <div className="md:col-span-2">
               <label htmlFor="geoOps" className="mb-1 block font-medium">Geographic operation</label>
               <textarea id="geoOps" {...register('geoOps')} rows={2} className="w-full rounded border p-2"/>
             </div>
           </div>
         </section>
+        
         <section>
           <h2 className="text-xl font-semibold mb-4">Target Maturity (optional)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -145,6 +195,7 @@ export default function ProfileForm() {
             ))}
           </div>
         </section>
+        
         <section>
           <h2 className="text-xl font-semibold mb-4">Target Capability (optional)</h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -156,10 +207,12 @@ export default function ProfileForm() {
             ))}
           </div>
         </section>
+        
         <section>
           <h2 className="text-xl font-semibold mb-4">Notes or comments</h2>
            <textarea id="notes" {...register('notes')} rows={4} className="w-full rounded border p-2"/>
         </section>
+        
         <div className="flex justify-end pt-4">
           <button type="submit" className="rounded-lg bg-blue-600 px-8 py-3 font-semibold text-white hover:bg-blue-700">
             Next: Start Assessment

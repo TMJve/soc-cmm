@@ -176,6 +176,10 @@ export const assessmentModel: readonly Domain[] = [
             label: 'Have you documented the main SOC customers?',
             type: QuestionType.SELECT,
             hasImportance: true,
+            evidence: {
+              triggerValue: ['2', '3', '4', '5'],
+              label: 'Path to document (URL or file path):',
+            },
             options: [
               { value: '1', label: 'No: No documentation in place' },
               { value: '2', label: 'Partially: Some ad-hoc information across documents' },
