@@ -7,12 +7,11 @@ import { useAppStore } from '~/lib/store';
 import { profileSchema, type ProfileFormData } from './ProfileForm.schema';
 import React from 'react';
 
-// Define constants for our dropdown options
 const ASSESSMENT_TYPES = [
-  { value: 'quick-scan', label: 'Quick Scan' },
-  { value: 'scoped', label: 'Scoped Assessment' },
-  { value: 'initial', label: 'Initial Assessment (Baseline)' },
-  { value: 'progress', label: 'Progress Assessment' },
+  { value: 'quick-scan', label: 'Quick Scan', description: 'Quick insight into approximate maturity' },
+  { value: 'scoped', label: 'Scoped Assessment', description: 'Only some elements assessed for a particular purpose' },
+  { value: 'initial', label: 'Initial Assessment (Baseline)', description: 'Establish maturity baseline' },
+  { value: 'progress', label: 'Progress Assessment', description: 'Establish maturity progress since baseline' },
 ];
 
 const ASSESSMENT_STYLES = [
@@ -123,13 +122,15 @@ export default function ProfileForm() {
               {errors.departments && <p className="mt-1 text-sm text-red-600">{errors.departments.message}</p>}
             </div>
             
-            {/* UPDATED: Assessment Type is now a dropdown */}
+            {/* UPDATED: Assessment Type dropdown now has tooltips */}
             <div>
               <label htmlFor="assessmentType" className="mb-1 block font-medium">Assessment type</label>
               <select id="assessmentType" {...register('assessmentType')} className="w-full rounded border p-2">
                 <option value="">Select a type...</option>
                 {ASSESSMENT_TYPES.map(type => (
-                  <option key={type.value} value={type.value}>{type.label}</option>
+                  <option key={type.value} value={type.value} title={type.description}>
+                    {type.label}
+                  </option>
                 ))}
               </select>
             </div>
@@ -143,7 +144,6 @@ export default function ProfileForm() {
               <textarea id="scope" {...register('scope')} rows={2} className="w-full rounded border p-2"/>
             </div>
 
-             {/* UPDATED: Assessment Style is now a dropdown */}
              <div>
               <label htmlFor="assessmentStyle" className="mb-1 block font-medium">Assessment style</label>
               <select id="assessmentStyle" {...register('assessmentStyle')} className="w-full rounded border p-2">
@@ -166,7 +166,6 @@ export default function ProfileForm() {
               </div>
             ))}
 
-            {/* UPDATED: SOC Region is now a dropdown */}
             <div>
               <label htmlFor="socRegion" className="mb-1 block font-medium">SOC region</label>
               <select id="socRegion" {...register('socRegion')} className="w-full rounded border p-2">

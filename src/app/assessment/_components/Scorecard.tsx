@@ -2,9 +2,8 @@
 'use client';
 
 import { type DomainResult } from '~/lib/scoring';
-import { RecommendationCard } from './RecommendationCard'; // 1. Import the new component
+import { RecommendationCard } from './RecommendationCard';
 
-// A helper to determine the bar color based on the score
 const getBarColor = (score: number) => {
   if (score < 2) return 'bg-red-500';
   if (score < 3.5) return 'bg-yellow-500';
@@ -39,8 +38,12 @@ export const Scorecard = ({ domainName, domainResults }: { domainName: string; d
         ))}
       </div>
 
-      {/* 2. Add the RecommendationCard component at the bottom */}
-      <RecommendationCard domainName={domainName} score={domainResults.score} />
+      {/* UPDATE: Pass the 'subdomains' object to the RecommendationCard */}
+      <RecommendationCard 
+        domainName={domainName} 
+        score={domainResults.score} 
+        subdomains={domainResults.subdomains}
+      />
     </div>
   );
 };

@@ -2,12 +2,22 @@
 'use client';
 
 import { api } from '~/trpc/react';
+import { type SubdomainResult } from '~/lib/scoring'; // Import the SubdomainResult type
 
-export const RecommendationCard = ({ domainName, score }: { domainName: string; score: number }) => {
+export const RecommendationCard = ({ 
+  domainName, 
+  score,
+  subdomains, // 1. Accept the subdomains as a prop
+}: { 
+  domainName: string; 
+  score: number;
+  subdomains: Record<string, SubdomainResult>; // Use the specific type
+}) => {
   const getRecommendationsMutation = api.assessment.getRecommendations.useMutation();
 
   const handleGetRecommendations = () => {
-    getRecommendationsMutation.mutate({ domainName, score });
+    // 2. Pass the subdomains in the mutation call
+    getRecommendationsMutation.mutate({ domainName, score, subdomains });
   };
 
   return (

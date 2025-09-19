@@ -2,6 +2,12 @@
 import { z } from "zod";
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 
+// NEW: Define the shape of the expected response from the Ollama API
+type OllamaResponse = {
+  response: string;
+  // Ollama sends other properties, but we only care about this one
+};
+
 export const assessmentRouter = createTRPCRouter({
   submitAnswers: publicProcedure
     .input(
@@ -20,19 +26,60 @@ export const assessmentRouter = createTRPCRouter({
       z.object({
         domainName: z.string(),
         score: z.number(),
+        subdomains: z.record(z.object({
+          name: z.string(),
+          score: z.number(),
+        })),
       })
     )
     .mutation(async ({ input }) => {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const { domainName, score, subdomains } = input;
 
-      // In the future, this is where the real AI/RAG logic will go.
-      // For now, return mocked, placeholder recommendations.
-      if (input.score < 2) {
-        return `For the ${input.domainName} domain, a score of ${input.score.toFixed(2)} is critical.\n- Next 1 Month: Immediately review all processes and personnel training.\n- Next Quarter: Implement a foundational improvement plan.\n- Next 6 Months: Invest in new tooling and advanced training.`;
+      const scoreSummary = Object.values(subdomains)
+        .map(sub => `- ${sub.name}: ${sub.score.toFixed(2)}`)
+        .join('\n');
+
+      const prompt = `
+        You are a world-class cybersecurity consultant providing strategic advice to improve a Security Operations Center (SOC).
+
+        A user has just completed a SOC-CMM assessment. Here are their results for the "${domainName}" domain:
+        - Overall Domain Score: ${score.toFixed(2)} / 5.00
+        - Subdomain Scores:
+        ${scoreSummary}
+
+        Based ONLY on these scores, analyze their performance. Identify the lowest-scoring subdomains as the highest-priority areas for improvement.
+
+        Provide a prioritized and actionable roadmap. Be specific, professional, and practical. Structure your response into three clear sections:
+        1.  **Next 1 Month (Immediate Actions):** Focus on foundational, quick wins.
+        2.  **Next Quarter (Strategic Initiatives):** Focus on broader process improvements.
+        3.  **Next 6-12 Months (Long-Term Goals):** Focus on mature capabilities and optimization.
+      `;
+
+      try {
+        const response = await fetch('http://localhost:11434/api/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            model: 'llama3.1',
+            prompt: prompt,
+            stream: false,
+          }),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Ollama API responded with status ${response.status}`);
+        }
+
+        // FIX: Use a type assertion to tell TypeScript the shape of the data
+        const data = await response.json() as OllamaResponse;
+        
+        return data.response; // This is now type-safe
+
+      } catch (error) {
+        console.error("Ollama request failed:", error);
+        throw new Error("Failed to get AI recommendations from local Ollama instance.");
       }
-      if (input.score < 3.5) {
-        return `For the ${input.domainName} domain, a score of ${input.score.toFixed(2)} indicates areas for improvement.\n- Next 1 Month: Identify and document the top 3 weaknesses.\n- Next Quarter: Run targeted workshops to address these gaps.\n- Next 6 Months: Review and optimize the relevant processes.`;
-      }
-      return `For the ${input.domainName} domain, a score of ${input.score.toFixed(2)} is strong.\n- Next 1 Month: Solidify documentation for all current processes.\n- Next Quarter: Explore automation opportunities for existing workflows.\n- Next 6 Months: Conduct a review to ensure continued alignment with business goals.`;
     }),
 });
