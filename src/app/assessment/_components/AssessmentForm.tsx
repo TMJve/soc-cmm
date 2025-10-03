@@ -5,36 +5,54 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { assessmentModel } from '~/lib/socmm-schema';
 import { useAppStore, type AssessmentAnswers } from '~/lib/store';
 import { DomainRenderer } from './DomainRenderer';
-import { InfoBox } from './InfoBox'; // 1. Import the new InfoBox component
+import { InfoBox } from './InfoBox';
 
 export function AssessmentForm() {
-  const methods = useForm();
-  const { setAnswers } = useAppStore(); 
+  const { activeDomainId, answers, actions } = useAppStore();
+  
+  const methods = useForm({
+    defaultValues: answers,
+  });
 
+  // FIX: Ensure the 'data' type matches what the store expects
   const onSubmit = (data: AssessmentAnswers) => {
-    console.log('Final Assessment Data:', data);
-    setAnswers(data);
+    actions.setAnswers(data);
+    actions.returnToDashboard();
   };
+  
+  const activeDomain = assessmentModel.find(d => d.id === activeDomainId);
+
+  if (!activeDomain) {
+    return (
+      <div className="text-center">
+        <p>Error: No active domain selected.</p>
+        <button onClick={actions.returnToDashboard} className="mt-4 rounded-lg bg-blue-600 px-6 py-2 text-white">
+          Return to Dashboard
+        </button>
+      </div>
+    );
+  }
 
   return (
     <FormProvider {...methods}>
       <form onSubmit={methods.handleSubmit(onSubmit)}>
-        
-        {/* 2. Add the InfoBox component right at the top of the form */}
         <InfoBox />
-
-        <div className="space-y-12">
-          {assessmentModel.map((domain) => (
-            <DomainRenderer key={domain.id} domain={domain} />
-          ))}
-        </div>
         
-        <div className="mt-12 flex justify-end">
+        <DomainRenderer domain={activeDomain} />
+        
+        <div className="mt-12 flex justify-between">
+          <button
+            type="button"
+            onClick={actions.returnToDashboard}
+            className="rounded-lg bg-gray-500 px-8 py-3 font-semibold text-white hover:bg-gray-600"
+          >
+            Back to Dashboard
+          </button>
           <button
             type="submit"
-            className="bg-green-600 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-700 text-lg"
+            className="rounded-lg bg-green-600 px-8 py-3 font-semibold text-white hover:bg-green-700"
           >
-            Submit & View Results
+            Save & Return to Dashboard
           </button>
         </div>
       </form>

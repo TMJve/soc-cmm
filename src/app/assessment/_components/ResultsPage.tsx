@@ -5,12 +5,13 @@ import React, { useState } from 'react';
 import { useAppStore } from '~/lib/store';
 import { calculateAllScores } from '~/lib/scoring';
 import { Scorecard } from './Scorecard';
-import { AssessmentPDF } from './AssessmentPDF'; // Import our new PDF component
-import { pdf } from '@react-pdf/renderer'; // Import the PDF generator
-import { saveAs } from 'file-saver'; // Import the file saver
+import { AssessmentPDF } from './AssessmentPDF';
+import { pdf } from '@react-pdf/renderer';
+import { saveAs } from 'file-saver';
 
 export default function ResultsPage() {
-  const { answers, profileData, reset } = useAppStore();
+  // THE FIX (Part 1): Get the 'actions' object from the store
+  const { answers, profileData, actions } = useAppStore();
   const [isGenerating, setIsGenerating] = useState(false);
 
   const results = calculateAllScores(answers);
@@ -19,12 +20,10 @@ export default function ResultsPage() {
     setIsGenerating(true);
     console.log('Generating PDF...');
 
-    // Generate the PDF blob in memory
     const blob = await pdf(
       <AssessmentPDF results={results} profileData={profileData} />
     ).toBlob();
 
-    // Trigger the download
     const fileName = `SOC-Assessment-Results-${profileData?.names?.replace(/ /g, '_') ?? 'Report'}.pdf`;
     saveAs(blob, fileName);
 
@@ -60,7 +59,8 @@ export default function ResultsPage() {
           {isGenerating ? 'Generating...' : 'Export to PDF'}
         </button>
         <button
-          onClick={reset}
+          // THE FIX (Part 2): Call the function through the 'actions' object
+          onClick={actions.reset}
           className="rounded-lg bg-blue-600 px-8 py-3 font-semibold text-white hover:bg-blue-700"
         >
           Start New Assessment

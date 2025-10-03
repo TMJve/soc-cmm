@@ -43,7 +43,8 @@ const ScoreSelect = ({ name, register, range }: { name: keyof ProfileFormData, r
 };
 
 export default function ProfileForm() {
-  const { setProfileData } = useAppStore();
+  // THE FIX: Get the entire 'actions' object from the store
+  const { actions } = useAppStore();
 
   const {
     register,
@@ -72,7 +73,8 @@ export default function ProfileForm() {
 
   const onSubmit: SubmitHandler<ProfileFormData> = (data) => {
     console.log('Profile form submitted successfully:', data);
-    setProfileData(data);
+    // THE FIX: Call the function through the 'actions' object
+    actions.setProfileData(data);
   };
 
   const orgFields = [
@@ -122,7 +124,6 @@ export default function ProfileForm() {
               {errors.departments && <p className="mt-1 text-sm text-red-600">{errors.departments.message}</p>}
             </div>
             
-            {/* UPDATED: Assessment Type dropdown now has tooltips */}
             <div>
               <label htmlFor="assessmentType" className="mb-1 block font-medium">Assessment type</label>
               <select id="assessmentType" {...register('assessmentType')} className="w-full rounded border p-2">
