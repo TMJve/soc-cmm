@@ -3,48 +3,48 @@ import { create } from 'zustand';
 import { persist, createJSONStorage } from 'zustand/middleware';
 import { type ProfileFormData } from '~/app/assessment/_components/ProfileForm.schema';
 
-// FIX: Change 'any' to 'unknown' for full type safety
 export type AssessmentAnswers = Record<string, unknown>;
 
-type State = {
+// The full state now includes the actions directly at the top level
+type AppState = {
   step: 'profile' | 'dashboard' | 'assessment' | 'results';
   activeDomainId: string | null;
   profileData: ProfileFormData | null;
   answers: AssessmentAnswers;
-};
 
-type Actions = {
+  // Actions are now top-level properties
   setProfileData: (data: ProfileFormData) => void;
   startDomain: (domainId: string) => void;
   returnToDashboard: () => void;
   setAnswers: (data: Partial<AssessmentAnswers>) => void;
-  goToStep: (step: State['step']) => void;
+  goToStep: (step: AppState['step']) => void;
   reset: () => void;
 };
 
-const initialState: State = {
-  step: 'profile',
+// The initial state for just the data part
+const initialState = {
+  step: 'profile' as const,
   profileData: null,
   answers: {},
   activeDomainId: null,
 };
 
 export const useAppStore = create(
-  persist<State & { actions: Actions }>(
+  persist<AppState>(
     (set) => ({
       ...initialState,
-      actions: {
-        setProfileData: (data) => set({ profileData: data, step: 'dashboard' }),
-        startDomain: (domainId) => set({ activeDomainId: domainId, step: 'assessment' }),
-        returnToDashboard: () => set({ activeDomainId: null, step: 'dashboard' }),
-        setAnswers: (data) => set((state) => ({ answers: { ...state.answers, ...data } })),
-        goToStep: (step) => set({ step }),
-        reset: () => set(initialState),
-      }
+      // Functions are now defined at the top level, not inside an 'actions' object
+      setProfileData: (data) => set({ profileData: data, step: 'dashboard' }),
+      startDomain: (domainId) => set({ activeDomainId: domainId, step: 'assessment' }),
+      returnToDashboard: () => set({ activeDomainId: null, step: 'dashboard' }),
+      setAnswers: (data) => set((state) => ({ answers: { ...state.answers, ...data } })),
+      goToStep: (step) => set({ step }),
+      reset: () => set(initialState),
     }),
     {
       name: 'soc-cmm-assessment-storage',
       storage: createJSONStorage(() => localStorage),
+      // NO partialize function. The middleware will automatically ignore the functions when saving.
     }
   )
 );

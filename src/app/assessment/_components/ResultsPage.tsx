@@ -10,8 +10,8 @@ import { pdf } from '@react-pdf/renderer';
 import { saveAs } from 'file-saver';
 
 export default function ResultsPage() {
-  // THE FIX (Part 1): Get the 'actions' object from the store
-  const { answers, profileData, actions } = useAppStore();
+  // THE FIX: Get 'reset' directly from the store, not from 'actions'
+  const { answers, profileData, reset } = useAppStore();
   const [isGenerating, setIsGenerating] = useState(false);
 
   const results = calculateAllScores(answers);
@@ -42,10 +42,10 @@ export default function ResultsPage() {
 
       <div>
         {Object.entries(results).map(([domainId, domainResults]) => (
-          <Scorecard 
-            key={domainId} 
-            domainName={domainResults.name} 
-            domainResults={domainResults} 
+          <Scorecard
+            key={domainId}
+            domainName={domainResults.name}
+            domainResults={domainResults}
           />
         ))}
       </div>
@@ -59,8 +59,8 @@ export default function ResultsPage() {
           {isGenerating ? 'Generating...' : 'Export to PDF'}
         </button>
         <button
-          // THE FIX (Part 2): Call the function through the 'actions' object
-          onClick={actions.reset}
+          // THE FIX: Call the 'reset' function directly
+          onClick={reset}
           className="rounded-lg bg-blue-600 px-8 py-3 font-semibold text-white hover:bg-blue-700"
         >
           Start New Assessment

@@ -44,7 +44,7 @@ const ScoreSelect = ({ name, register, range }: { name: keyof ProfileFormData, r
 
 export default function ProfileForm() {
   // THE FIX: Get the entire 'actions' object from the store
-  const { actions } = useAppStore();
+  const { setProfileData } = useAppStore();
 
   const {
     register,
@@ -74,7 +74,7 @@ export default function ProfileForm() {
   const onSubmit: SubmitHandler<ProfileFormData> = (data) => {
     console.log('Profile form submitted successfully:', data);
     // THE FIX: Call the function through the 'actions' object
-    actions.setProfileData(data);
+    setProfileData(data);
   };
 
   const orgFields = [

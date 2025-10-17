@@ -123,3 +123,31 @@ export function calculateAllScores(answers: AssessmentAnswers): Results {
   });
   return results;
 }
+
+
+export function calculateDomainProgress(domain: Domain, answers: AssessmentAnswers): number {
+  let totalQuestions = 0;
+  let answeredQuestions = 0;
+
+  domain.subdomains.forEach((subdomain) => {
+    subdomain.questions.forEach((question) => {
+      // We only count questions that expect a direct answer (not indicators)
+      if (question.type === 'select' || question.type === 'text' || question.type === 'number') {
+        totalQuestions++;
+        const answer = getValueFromPath(answers, question.id);
+        if (answer !== undefined && answer !== null && answer !== '') {
+          answeredQuestions++;
+        }
+      }
+      // For checkbox groups, we can consider it "answered" if at least one is checked,
+      // but a simple count of scorable questions is fine for an MVP progress bar.
+    });
+  });
+
+  if (totalQuestions === 0) {
+    return 0;
+  }
+
+  const progress = (answeredQuestions / totalQuestions) * 100;
+  return Math.round(progress);
+}
