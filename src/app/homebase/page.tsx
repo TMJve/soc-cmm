@@ -14,68 +14,80 @@ type Assessment = {
 
 export default function Homebase() {
   const router = useRouter();
+  
   const [assessments, setAssessments] = useState<Assessment[]>([]);
   const [loading, setLoading] = useState(true);
   
-  // New state for the modal
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [newAssessmentName, setNewAssessmentName] = useState('');
   const [creating, setCreating] = useState(false);
 
   useEffect(() => {
     const checkUserAndFetch = async () => {
-      const { data: { user } } = await supabase.auth.getUser();
-      
-      if (!user) {
+      // NO DESTRUCTURING HERE
+      const authResponse = await supabase.auth.getUser();
+      if (authResponse.error || !authResponse.data.user) {
         router.push('/login');
         return;
       }
 
-      const { data, error } = await supabase
+      // NO DESTRUCTURING HERE
+      const dbResponse = await supabase
         .from('assessments')
         .select('*')
         .order('created_at', { ascending: false });
 
-      if (error) console.error('Error fetching:', error);
-      else setAssessments(data || []);
+      if (dbResponse.error) {
+        console.error('Error fetching:', dbResponse.error);
+      } else {
+        // Explicitly cast to unknown then to our type to satisfy linter
+        const data = dbResponse.data as unknown as Assessment[];
+        setAssessments(data || []);
+      }
       
       setLoading(false);
     };
 
-    checkUserAndFetch();
+    void checkUserAndFetch();
   }, [router]);
 
-  // 1. Open the modal instead of creating immediately
   const openCreateModal = () => {
-    setNewAssessmentName(''); // Reset name
+    setNewAssessmentName('');
     setIsModalOpen(true);
   };
 
-  // 2. The actual create logic, now triggered by the modal
   const handleConfirmCreate = async (e: React.FormEvent) => {
-    e.preventDefault(); // Prevent form reload
+    e.preventDefault();
     if (!newAssessmentName.trim()) return;
 
     setCreating(true);
-    const { data: { user } } = await supabase.auth.getUser();
+    
+    // NO DESTRUCTURING HERE
+    const authResponse = await supabase.auth.getUser();
+    const user = authResponse.data.user;
+    
     if (!user) return;
 
-    const { data, error } = await supabase
+    // NO DESTRUCTURING HERE
+    const insertResponse = await supabase
       .from('assessments')
       .insert({
         user_id: user.id,
-        name: newAssessmentName, // Use the custom name
+        name: newAssessmentName,
         profile_data: {},
         answers: {}
       })
       .select()
       .single();
 
-    if (error) {
+    if (insertResponse.error) {
       alert('Error creating assessment');
+      console.error(insertResponse.error);
       setCreating(false);
-    } else if (data) {
-      router.push(`/assessment?id=${data.id}`);
+    } else if (insertResponse.data) {
+      // Explicitly cast to unknown then to our type
+      const newAssessment = insertResponse.data as unknown as Assessment;
+      router.push(`/assessment?id=${newAssessment.id}`);
     }
   };
 
@@ -129,7 +141,6 @@ export default function Homebase() {
         </div>
       </div>
 
-      {/* --- The Name Modal --- */}
       {isModalOpen && (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm">
           <div className="w-full max-w-md rounded-lg bg-white p-6 shadow-xl">

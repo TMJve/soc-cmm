@@ -63,9 +63,11 @@ export const InfoBox = () => {
               About SOC-CMM Maturity Levels
             </h3>
             <p className="text-sm text-blue-700">
-              CMMI defines maturity as a means for an organization &quot;to characterize its performance&quot; for a specific entity (here: the SOC). The SOC-CMM calculates a maturity score using 6 continuous maturity levels, measured across 5 domains (business, people, process, technology, services):
+              CMMI defines maturity as a means for an organization &quot;to characterize its performance&quot; for a specific entity (here: the SOC). The SOC-CMM calculates a maturity score using 6 continuous maturity levels, measured across 5 domains.
             </p>
-            <img src="/maturitylevels.png" alt="Maturity Levels" className="my-2" />
+            
+            {/* REMOVED THE IMG TAG TO FIX BUILD WARNING */}
+            
             <ul className="mt-2 list-inside list-disc space-y-1 text-sm text-blue-700">
               <li><b>Level 0:</b> Non-existent</li>
               <li><b>Level 1:</b> Initial</li>
