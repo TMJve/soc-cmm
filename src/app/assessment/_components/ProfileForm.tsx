@@ -29,7 +29,6 @@ const SOC_REGIONS = [
   { value: 'middle-east-africa', label: 'Middle East & Africa' },
 ];
 
-
 const ScoreSelect = ({ name, register, range }: { name: keyof ProfileFormData, register: UseFormRegister<ProfileFormData>, range: '1-5' | '1-3' }) => {
   const options = range === '1-5'
     ? Array.from({ length: 41 }, (_, i) => (1 + i * 0.1).toFixed(1))
@@ -44,7 +43,6 @@ const ScoreSelect = ({ name, register, range }: { name: keyof ProfileFormData, r
 };
 
 export default function ProfileForm() {
-  // FIX: Get 'goToStep' from the store
   const { setProfileData, assessmentId, profileData, goToStep } = useAppStore();
 
   const {
@@ -53,7 +51,8 @@ export default function ProfileForm() {
     formState: { errors },
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
-    defaultValues: profileData || {
+    // FIX: Using ?? instead of ||
+    defaultValues: profileData ?? {
       assessmentDate: new Date().toISOString().slice(0, 10),
       names: '',
       departments: '',
@@ -73,26 +72,20 @@ export default function ProfileForm() {
   });
 
   const onSubmit: SubmitHandler<ProfileFormData> = async (data) => {
-    console.log('Profile form submitted successfully:', data);
-    
-    // 1. Update Local Store
     setProfileData(data);
 
-    // 2. Save to Database immediately if we have an ID
     if (assessmentId) {
       const { error } = await supabase
         .from('assessments')
         .update({ 
           profile_data: data,
-          // Update the assessment name in the list based on what they entered
           name: `${data.names} - ${data.departments} (${data.assessmentDate})`
         })
         .eq('id', assessmentId);
       
       if (error) console.error("Failed to save profile to DB:", error);
     }
-
-    // 3. FIX: Explicitly navigate to the Dashboard
+    
     goToStep('dashboard');
   };
 

@@ -1,7 +1,7 @@
 // src/app/assessment/page.tsx
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useEffect, useState, Suspense } from 'react';
 import { useSearchParams, useRouter } from 'next/navigation';
 import supabase from '~/lib/supabase';
 import { useAppStore } from '~/lib/store';
@@ -12,7 +12,15 @@ import { AssessmentForm } from './_components/AssessmentForm';
 import ResultsPage from './_components/ResultsPage';
 import { Dashboard } from './_components/Dashboard';
 
-export default function AssessmentPage() {
+// Define explicit interface
+interface DbAssessment {
+  id: string;
+  profile_data: ProfileFormData | null;
+  answers: Record<string, unknown> | null;
+}
+
+// 1. We move the logic into a non-exported component called "AssessmentContent"
+function AssessmentContent() {
   const searchParams = useSearchParams();
   const router = useRouter();
   const assessmentId = searchParams.get('id');
@@ -23,31 +31,32 @@ export default function AssessmentPage() {
   useEffect(() => {
     const loadSession = async () => {
       if (!assessmentId) {
-        // If no ID provided, go back to homebase
         router.push('/homebase');
         return;
       }
 
-      const { data, error } = await supabase
+      // No destructuring (Linter safe)
+      const response = await supabase
         .from('assessments')
         .select('*')
         .eq('id', assessmentId)
         .single();
 
-      if (error || !data) {
-        console.error("Error loading assessment:", error);
-        router.push('/homebase'); // Security: if not found/owned, kick out
+      if (response.error || !response.data) {
+        console.error("Error loading assessment:", response.error);
+        router.push('/homebase'); 
         return;
       }
 
-      // BUG FIX: Forcefully initialize the store with THIS assessment's data
-      // This wipes out any "ghost data" from previous sessions
+      // Explicit cast (Linter safe)
+      const assessment = response.data as unknown as DbAssessment;
+
       initializeAssessment({
-        id: data.id,
-        profileData: data.profile_data as ProfileFormData,
-        answers: data.answers as Record<string, unknown>,
-        // If profile is empty, force them to profile step. Otherwise dashboard.
-        step: Object.keys(data.profile_data || {}).length === 0 ? 'profile' : 'dashboard'
+        id: assessment.id,
+        // Nullish coalescing (Linter safe)
+        profileData: assessment.profile_data ?? {} as ProfileFormData,
+        answers: assessment.answers ?? {},
+        step: Object.keys(assessment.profile_data ?? {}).length === 0 ? 'profile' : 'dashboard'
       });
       
       setLoading(false);
@@ -67,5 +76,14 @@ export default function AssessmentPage() {
       {step === 'assessment' && <AssessmentForm />}
       {step === 'results' && <ResultsPage />}
     </div>
+  );
+}
+
+// 2. We export a wrapper that uses Suspense
+export default function AssessmentPage() {
+  return (
+    <Suspense fallback={<div className="flex h-screen items-center justify-center">Loading...</div>}>
+      <AssessmentContent />
+    </Suspense>
   );
 }

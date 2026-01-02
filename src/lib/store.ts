@@ -5,7 +5,6 @@ import { type ProfileFormData } from '~/app/assessment/_components/ProfileForm.s
 export type AssessmentAnswers = Record<string, unknown>;
 
 type State = {
-  // We track the specific ID we are working on
   assessmentId: string | null; 
   step: 'profile' | 'dashboard' | 'assessment' | 'results';
   activeDomainId: string | null;
@@ -21,7 +20,6 @@ type Actions = {
   setAnswers: (data: Partial<AssessmentAnswers>) => void;
   goToStep: (step: State['step']) => void;
   reset: () => void;
-  // New action to load everything at once from DB
   initializeAssessment: (data: { 
     id: string; 
     profileData: ProfileFormData; 
@@ -32,7 +30,7 @@ type Actions = {
 
 const initialState: State = {
   assessmentId: null,
-  step: 'dashboard', // Default to dashboard if loading an existing assessment
+  step: 'dashboard',
   profileData: null,
   answers: {},
   activeDomainId: null,
@@ -49,12 +47,12 @@ export const useAppStore = create<State & Actions>((set) => ({
   goToStep: (step) => set({ step }),
   reset: () => set(initialState),
 
-  // This is the key to fixing the bug. We forcefully overwrite the state with DB data.
   initializeAssessment: ({ id, profileData, answers, step }) => set({
     assessmentId: id,
     profileData,
-    answers: answers || {},
-    step: step || 'dashboard',
+    // FIX: Using ?? to satisfy 'prefer-nullish-coalescing'
+    answers: answers ?? {},
+    step: step ?? 'dashboard',
     activeDomainId: null
   }),
 }));
