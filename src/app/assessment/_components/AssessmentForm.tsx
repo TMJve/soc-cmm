@@ -60,6 +60,7 @@
 //   );
 // }
 // src/app/assessment/_components/AssessmentForm.tsx
+// src/app/assessment/_components/AssessmentForm.tsx
 'use client';
 
 import { FormProvider, useForm } from 'react-hook-form';
@@ -67,31 +68,33 @@ import { assessmentModel } from '~/lib/socmm-schema';
 import { useAppStore } from '~/lib/store';
 import { DomainRenderer } from './DomainRenderer';
 import { InfoBox } from './InfoBox';
+import supabase from '~/lib/supabase'; // Import Supabase
 
 export function AssessmentForm() {
-  // FIX: Get functions directly from the store
-  const { activeDomainId, answers, setAnswers, returnToDashboard } = useAppStore();
+  const { activeDomainId, answers, assessmentId, setAnswers, returnToDashboard } = useAppStore();
   
   const activeDomain = assessmentModel.find(d => d.id === activeDomainId);
-
   const methods = useForm({ defaultValues: answers });
 
-  const onSubmit = (data: Record<string, unknown>) => {
-    // FIX: Call functions directly
+  const onSubmit = async (data: Record<string, unknown>) => {
+    // 1. Update Local State
     setAnswers(data);
+    
+    // 2. Save to Database immediately
+    if (assessmentId) {
+      const { error } = await supabase
+        .from('assessments')
+        .update({ answers: { ...answers, ...data } }) // Merge new answers with old
+        .eq('id', assessmentId);
+      
+      if (error) console.error("Failed to save progress:", error);
+    }
+
+    // 3. Navigate
     returnToDashboard();
   };
   
-  if (!activeDomain) {
-    return (
-      <div className="text-center">
-        <p>Error: No active domain selected.</p>
-        <button onClick={returnToDashboard} className="mt-4 rounded-lg bg-blue-600 px-6 py-2 text-white">
-          Return to Dashboard
-        </button>
-      </div>
-    );
-  }
+  if (!activeDomain) return null;
 
   return (
     <FormProvider {...methods}>
@@ -101,7 +104,6 @@ export function AssessmentForm() {
         <div className="mt-12 flex justify-between">
           <button
             type="button"
-            // FIX: Call the function directly
             onClick={returnToDashboard}
             className="rounded-lg bg-gray-500 px-8 py-3 font-semibold text-white hover:bg-gray-600"
           >
@@ -111,7 +113,7 @@ export function AssessmentForm() {
             type="submit"
             className="rounded-lg bg-green-600 px-8 py-3 font-semibold text-white hover:bg-green-700"
           >
-            Save & Return to Dashboard
+            Save & Return
           </button>
         </div>
       </form>

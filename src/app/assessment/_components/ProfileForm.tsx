@@ -6,6 +6,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useAppStore } from '~/lib/store';
 import { profileSchema, type ProfileFormData } from './ProfileForm.schema';
 import React from 'react';
+import supabase from '~/lib/supabase';
 
 const ASSESSMENT_TYPES = [
   { value: 'quick-scan', label: 'Quick Scan', description: 'Quick insight into approximate maturity' },
@@ -43,8 +44,8 @@ const ScoreSelect = ({ name, register, range }: { name: keyof ProfileFormData, r
 };
 
 export default function ProfileForm() {
-  // THE FIX: Get the entire 'actions' object from the store
-  const { setProfileData } = useAppStore();
+  // FIX: Get 'goToStep' from the store
+  const { setProfileData, assessmentId, profileData, goToStep } = useAppStore();
 
   const {
     register,
@@ -52,7 +53,7 @@ export default function ProfileForm() {
     formState: { errors },
   } = useForm<ProfileFormData>({
     resolver: zodResolver(profileSchema),
-    defaultValues: {
+    defaultValues: profileData || {
       assessmentDate: new Date().toISOString().slice(0, 10),
       names: '',
       departments: '',
@@ -71,10 +72,28 @@ export default function ProfileForm() {
     },
   });
 
-  const onSubmit: SubmitHandler<ProfileFormData> = (data) => {
+  const onSubmit: SubmitHandler<ProfileFormData> = async (data) => {
     console.log('Profile form submitted successfully:', data);
-    // THE FIX: Call the function through the 'actions' object
+    
+    // 1. Update Local Store
     setProfileData(data);
+
+    // 2. Save to Database immediately if we have an ID
+    if (assessmentId) {
+      const { error } = await supabase
+        .from('assessments')
+        .update({ 
+          profile_data: data,
+          // Update the assessment name in the list based on what they entered
+          name: `${data.names} - ${data.departments} (${data.assessmentDate})`
+        })
+        .eq('id', assessmentId);
+      
+      if (error) console.error("Failed to save profile to DB:", error);
+    }
+
+    // 3. FIX: Explicitly navigate to the Dashboard
+    goToStep('dashboard');
   };
 
   const orgFields = [
