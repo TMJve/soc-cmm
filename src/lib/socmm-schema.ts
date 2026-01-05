@@ -9,7 +9,6 @@ export const QuestionType = {
   CHECKBOX_GROUP: 'checkbox_group',
   TEXT: 'text',
   NUMBER: 'number',
-  //COMPLETENESS_INDICATOR: 'completeness_indicator', // ADD THIS LINE
 } as const;
 
 // A global constant for Importance levels
@@ -28,15 +27,15 @@ export type Question = {
   options?: { value: string; label: string }[];
   hasImportance?: boolean;
   evidence?: {
-    triggerValue: string | string[];// The answer that shows the text field (e.g., '5')
-    label: string;      // The label for the text field (e.g., 'Path to document:')
+    triggerValue: string | string[]; // The answer that shows the text field (e.g., '5')
+    label: string;                   // The label for the text field
   };
 };
 
 export type Subdomain = {
   id: string;
   name: string;
-  hasCompletenessIndicator?: boolean;
+  hasCompletenessIndicator?: boolean; // Toggles the progress bar for checkboxes
   questions: readonly Question[];
 };
 
@@ -44,8 +43,8 @@ export type Domain = {
   id: string;
   name: string;
   subdomains: readonly Subdomain[];
-  domainTooltipText?: string;   // ADD THIS LINE
-  domainLearnMoreUrl?: string; // ADD THIS LINE
+  domainTooltipText?: string;
+  domainLearnMoreUrl?: string;
 };
 
 // ============================================================================
@@ -57,9 +56,11 @@ export const assessmentModel: readonly Domain[] = [
   {
     id: 'business',
     name: 'Business',
-    domainTooltipText: 'The Business domain assesses the alignment of the SOC with the organization\'s overall goals and strategic objectives.',
-    domainLearnMoreUrl: 'https://www.sans.org/white-papers/38197/',
+    domainTooltipText: 'The Business domain assesses the alignment of the SOC with the organization\'s overall goals, strategic objectives, and governance structure.',
     subdomains: [
+      // ----------------------------------------------------------------------
+      // 1.1 Business Drivers
+      // ----------------------------------------------------------------------
       {
         id: 'drivers',
         name: 'Business Drivers',
@@ -71,10 +72,11 @@ export const assessmentModel: readonly Domain[] = [
             hasImportance: true,
             options: [
               { value: '1', label: 'No: Business drivers are unknown' },
-              { value: '2', label: 'Partially: Some business drivers have been identified' },
-              { value: '3', label: 'Averagely: Most business drivers have been identified' },
-              { value: '4', label: 'Mostly: All business drivers are well known within the SOC' },
-              { value: '5', label: 'Fully: Document completed, approved and formally published' },
+              { value: '2', label: 'Partially: Document completed, approved and formally published' }, 
+              // Note: Kept text exactly as provided in your list, though "Partially" usually implies incomplete.
+              { value: '3', label: 'Averagely: Some business drivers have been identified' },
+              { value: '4', label: 'Mostly: Most business drivers have been identified' },
+              { value: '5', label: 'Fully: All business drivers are well known within the SOC' },
             ],
           },
           {
@@ -82,6 +84,7 @@ export const assessmentModel: readonly Domain[] = [
             label: 'Have you documented the main business drivers?',
             type: QuestionType.SELECT,
             hasImportance: true,
+            // Added evidence field since it asks about documentation
             evidence: {
               triggerValue: ['2', '3', '4', '5'],
               label: 'Path to document (URL or file path):',
@@ -100,41 +103,44 @@ export const assessmentModel: readonly Domain[] = [
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
-              { value: '1', label: 'No: Business drivers are not part of decision making' },
-              { value: '2', label: 'Partially: Business drivers are referred to on an ad-hoc basis' },
-              { value: '3', label: 'Averagely: Business drivers are occasionally used in decisions' },
-              { value: '4', label: 'Mostly: Business drivers are used in most decisions' },
-              { value: '5', label: 'Fully: Business drivers are used in all relevant decisions' },
+              { value: '1', label: 'Business drivers are not part of decision making' },
+              { value: '2', label: 'Business drivers are referred to on an ad-hoc basis' },
+              { value: '3', label: 'Business drivers are occasionally used in decisions' },
+              { value: '4', label: 'Business drivers are used in most decisions' },
+              { value: '5', label: 'Business drivers are used in all relevant decisions' },
             ],
           },
           {
-            id: 'business.drivers.serviceCatalogueAlignment',
+            id: 'business.drivers.alignment',
             label: 'Do you regularly check if the current service catalogue is aligned with business drivers?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
-              { value: '1', label: 'No: Service catalogue has not been checked for alignment' },
-              { value: '2', label: 'Partially: Alignment is performed on an ad-hoc basis' },
-              { value: '3', label: 'Averagely: Alignment was performed but not maintained' },
-              { value: '4', label: 'Mostly: Alignment is performed and maintained regularly' },
-              { value: '5', label: 'Fully: Every change in the catalogue is checked against drivers' },
+              { value: '1', label: 'Service catalogue has not been checked for alignment' },
+              { value: '2', label: 'Alignment is performed on an ad-hoc basis' },
+              { value: '3', label: 'Alignment was performed but not maintained' },
+              { value: '4', label: 'Alignment is performed and maintained regularly' },
+              { value: '5', label: 'Every change in the catalogue is checked against drivers' },
             ],
           },
           {
-            id: 'business.drivers.stakeholderValidation',
+            id: 'business.drivers.validation',
             label: 'Have the business drivers been validated with business stakeholders?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
-              { value: '1', label: 'No: Business drivers have not been validated' },
-              { value: '2', label: 'Partially: Basic awareness of SOC drivers exists among stakeholders' },
-              { value: '3', label: 'Averagely: Stakeholders informally informed of business drivers' },
-              { value: '4', label: 'Mostly: Alignment of SOC drivers with stakeholders is performed' },
-              { value: '5', label: 'Fully: Business drivers are formally validated by stakeholders' },
+              { value: '1', label: 'Business drivers have not been validated' },
+              { value: '2', label: 'Basic awareness of SOC drivers exists among stakeholders' },
+              { value: '3', label: 'Stakeholders informally informed of business drivers' },
+              { value: '4', label: 'Alignment of SOC drivers with stakeholders is performed' },
+              { value: '5', label: 'Business drivers are formally validated by stakeholders' },
             ],
           },
         ],
       },
+      // ----------------------------------------------------------------------
+      // 1.2 Customers
+      // ----------------------------------------------------------------------
       {
         id: 'customers',
         name: 'Customers',
@@ -153,22 +159,22 @@ export const assessmentModel: readonly Domain[] = [
             ],
           },
           {
-            id: 'business.customers.customerTypes',
+            id: 'business.customers.list',
             label: 'Please specify your customer(s):',
             type: QuestionType.CHECKBOX_GROUP,
             options: [
               { value: 'legal', label: 'Legal' },
               { value: 'audit', label: 'Audit' },
-              { value: 'engineeringRnd', label: 'Engineering/R&D' },
+              { value: 'engineering', label: 'Engineering/R&D' },
               { value: 'it', label: 'IT' },
               { value: 'business', label: 'Business' },
-              { value: 'external', label: 'External' },
-              { value: 'seniorManagement', label: 'Senior Management' },
+              { value: 'external', label: 'External customers' },
+              { value: 'management', label: 'Senior Management' },
             ],
           },
           {
             id: 'business.customers.other',
-            label: 'Other customers (specify)',
+            label: 'Other customers (specify):',
             type: QuestionType.TEXT,
           },
           {
@@ -178,7 +184,7 @@ export const assessmentModel: readonly Domain[] = [
             hasImportance: true,
             evidence: {
               triggerValue: ['2', '3', '4', '5'],
-              label: 'Path to document (URL or file path):',
+              label: 'Path to document:',
             },
             options: [
               { value: '1', label: 'No: No documentation in place' },
@@ -189,7 +195,7 @@ export const assessmentModel: readonly Domain[] = [
             ],
           },
           {
-            id: 'business.customers.differentiatedOutput',
+            id: 'business.customers.differentiation',
             label: 'Do you differentiate output towards these specific customers?',
             type: QuestionType.SELECT,
             hasImportance: true,
@@ -209,7 +215,7 @@ export const assessmentModel: readonly Domain[] = [
             options: [
               { value: '1', label: 'No: Contractual agreements not in place' },
               { value: '2', label: 'Partially: No contract in place, ad-hoc agreements made' },
-              { value: '3', label: 'Averagely: Basic contract in place, not formally signed off' },
+              { value: '3', label: 'Averagely: Basic contract in place, not formally signed of' },
               { value: '4', label: 'Mostly: Contract signed, but not regularly reviewed' },
               { value: '5', label: 'Fully: Contract signed, approved by- and regularly reviewed with customers' },
             ],
@@ -242,16 +248,23 @@ export const assessmentModel: readonly Domain[] = [
           },
         ],
       },
+      // ----------------------------------------------------------------------
+      // 1.3 Charter
+      // ----------------------------------------------------------------------
       {
         id: 'charter',
         name: 'Charter',
-        // REMOVED: 'hasCompletenessIndicator' is no longer here.
+        hasCompletenessIndicator: true, // You requested completeness info here
         questions: [
           {
             id: 'business.charter.exists',
             label: 'Does the SOC have a formal charter document in place?',
             type: QuestionType.SELECT,
             hasImportance: true,
+            evidence: {
+              triggerValue: ['2', '3', '4', '5'],
+              label: 'Path to charter:',
+            },
             options: [
               { value: '1', label: 'No: No charter document in place' },
               { value: '2', label: 'Partially: Some ad-hoc information across documents' },
@@ -268,14 +281,14 @@ export const assessmentModel: readonly Domain[] = [
               { value: 'mission', label: 'Mission' },
               { value: 'vision', label: 'Vision' },
               { value: 'strategy', label: 'Strategy' },
-              { value: 'serviceScope', label: 'Service Scope' },
+              { value: 'scope', label: 'Service scope' },
               { value: 'deliverables', label: 'Deliverables' },
               { value: 'responsibilities', label: 'Responsibilities' },
               { value: 'accountability', label: 'Accountability' },
-              { value: 'operationalHours', label: 'Operational Hours' },
+              { value: 'operationalHours', label: 'Operational hours' },
               { value: 'stakeholders', label: 'Stakeholders' },
-              { value: 'objectivesGoals', label: 'Objectives/Goals' },
-              { value: 'statementOfSuccess', label: 'Statement of Success' },
+              { value: 'goals', label: 'Objectives/goals' },
+              { value: 'success', label: 'Statement of success' },
             ],
           },
           {
@@ -305,7 +318,7 @@ export const assessmentModel: readonly Domain[] = [
             ],
           },
           {
-            id: 'business.charter.stakeholdersFamiliar',
+            id: 'business.charter.stakeholders',
             label: 'Are all stakeholders familiar with the SOC Charter document contents?',
             type: QuestionType.SELECT,
             hasImportance: true,
@@ -319,56 +332,59 @@ export const assessmentModel: readonly Domain[] = [
           },
         ],
       },
+      // ----------------------------------------------------------------------
+      // 1.4 Governance
+      // ----------------------------------------------------------------------
       {
         id: 'governance',
         name: 'Governance',
-        hasCompletenessIndicator: true,
+        hasCompletenessIndicator: true, // You requested completeness info here
         questions: [
           {
-            id: 'business.governance.processInPlace',
+            id: 'business.governance.process',
             label: 'Does the soc have a governance process in place?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
               { value: '1', label: 'No: SOC governance process is not in place' },
               { value: '2', label: 'Partially: SOC governance is done in an ad hoc fashion' },
-              { value: '3', label: 'Averagely: Several governance elements are in place, but not structurally' },
+              { value: '3', label: 'Averagely: Several governance elemnts are in place, but not structurally' },
               { value: '4', label: 'Mostly: Formal Governance process is in place that covers most' },
               { value: '5', label: 'Fully: Formal governance process is in place and covers all SOC aspects.' },
             ],
           },
           {
-            id: 'business.governance.elementsIdentified',
+            id: 'business.governance.identified',
             label: 'Have all governance elements been identified?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
               { value: '1', label: 'No: No governance elements have been identified' },
-              { value: '2', label: 'Partially: Some governance elements are identified' },
-              { value: '3', label: 'Averagely: Some governance elements are identified and governed actively' },
-              { value: '4', label: 'Mostly: Most governance elements are identified and governed actively' },
+              { value: '2', label: 'Partially: Some governenace elemtns are identified' },
+              { value: '3', label: 'Averagely: some goevrnance elements are identified and governed actively' },
+              { value: '4', label: 'Mostly: Most governenace elements are identified and governed actively' },
               { value: '5', label: 'Fully: All elements are identified and actively governed' },
             ],
           },
           {
-            id: 'business.governance.elements',
+            id: 'business.governance.elementsList',
             label: 'Please specify identified governance elements:',
             type: QuestionType.CHECKBOX_GROUP,
             options: [
-              { value: 'businessAlignment', label: 'Business alignment' },
+              { value: 'alignment', label: 'Business alignment' },
               { value: 'accountability', label: 'Accountability' },
               { value: 'sponsorship', label: 'Sponsorship' },
               { value: 'mandate', label: 'Mandate' },
               { value: 'relationships', label: 'Relationships and third party management' },
-              { value: 'vendorEngagement', label: 'Vendor engagement' },
-              { value: 'serviceCommitment', label: 'Service commitment' },
-              { value: 'projectManagement', label: 'Project/program management' },
-              { value: 'continualImprovement', label: 'Continual improvement' },
+              { value: 'vendor', label: 'Vendor engagement' },
+              { value: 'commitment', label: 'Service commitment' },
+              { value: 'projectMgmt', label: 'Project/program management' },
+              { value: 'continuousImp', label: 'Continual improvement' },
               { value: 'spanOfControl', label: 'Span of control / federation governance' },
-              { value: 'outsourcedService', label: 'Outsourced service management' },
-              { value: 'kpisMetrics', label: 'SOC KPIs & metrics' },
-              { value: 'riskManagement', label: 'SOC Risk management' },
-              { value: 'customerEngagement', label: 'Customer engagement/satisfaction' },
+              { value: 'outsourced', label: 'Outsourced service management' },
+              { value: 'kpis', label: 'SOC KPIs & metrics' },
+              { value: 'risk', label: 'SOC Risk management' },
+              { value: 'engagement', label: 'Customer engagement/satisfaction' },
             ],
           },
           {
@@ -394,8 +410,8 @@ export const assessmentModel: readonly Domain[] = [
               { value: 'technology', label: 'Technology cost' },
               { value: 'services', label: 'Services cost' },
               { value: 'facility', label: 'Facility cost' },
-              { value: 'budgetForecasting', label: 'Budget forecasting' },
-              { value: 'budgetAlignment', label: 'Budget alignment' },
+              { value: 'forecasting', label: 'Budget forecasting' },
+              { value: 'alignment', label: 'Budget alignment' },
               { value: 'roi', label: 'Return on investment' },
             ],
           },
@@ -404,6 +420,10 @@ export const assessmentModel: readonly Domain[] = [
             label: 'Are all governance elements formally documented?',
             type: QuestionType.SELECT,
             hasImportance: true,
+            evidence: {
+              triggerValue: ['2', '3', '4', '5'],
+              label: 'Path to governance documentation:',
+            },
             options: [
               { value: '1', label: 'No' },
               { value: '2', label: 'Partially' },
@@ -481,723 +501,1208 @@ export const assessmentModel: readonly Domain[] = [
       },
     ],
   },
-  // #################### DOMAIN 2: PEOPLE ####################
-  {
-    id: 'people',
-    name: 'People',
-    subdomains: [
-      {
-        id: 'employees',
-        name: 'Employees',
-        questions: [
-          {
-            id: 'people.employees.fteCount',
-            label: "How many FTE's are in your SOC?",
-            type: QuestionType.NUMBER,
-          },
-          {
-            id: 'people.employees.useExternal',
-            label: 'Do you use external employees / contractors in your SOC?',
-            type: QuestionType.SELECT,
-            options: [
-              { value: 'yes', label: 'Yes' },
-              { value: 'no', label: 'No' },
-            ],
-          },
-          {
-            id: 'people.employees.externalFteCount',
-            label: "If yes, specify the number of external FTE's:",
-            type: QuestionType.NUMBER,
-          },
-          {
-            id: 'people.employees.fteRequirements',
-            label: 'Does the current size of the SOC meet FTE requirements?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.employees.fteRatio',
-            label: 'Does the SOC meet requirements for internal to external employee FTE ratio?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.employees.skillsetRatio',
-            label: 'Does the SOC meet requirements for internal to external employee skillset?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.employees.positionsFilled',
-            label: 'Are all positions filled?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.employees.recruitmentProcess',
-            label: 'Do you have a recruitment process in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.employees.talentAcquisition',
-            label: 'Do you have talent acquisition in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.employees.ksaos',
-            label: 'Do you have specific KSAOs established for SOC personnel?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.employees.psychologicallySafe',
-            label: 'Do you actively seek to create a psychologically safe environment for SOC personnel?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'roles',
-        name: 'Roles & Hierarchy',
-        hasCompletenessIndicator: true,
-        questions: [
-          {
-            id: 'people.roles.differentiate',
-            label: 'Do you formally differentiate roles within the SOC?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Somewhat' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.roles.present',
-            label: 'Which of the following roles are present in your SOC?',
-            type: QuestionType.CHECKBOX_GROUP,
-            options: [
-              { value: 'securityAnalyst', label: 'Security Analyst' },
-              { value: 'securityEngineer', label: 'Security / Systems Engineer' },
-              { value: 'forensicAnalyst', label: 'Forensic Analyst' },
-              { value: 'securityArchitect', label: 'Security Architect' },
-              { value: 'threatIntelAnalyst', label: 'Threat Intelligence Analyst' },
-              { value: 'dataScientist', label: 'Data Scientist' },
-              { value: 'socManager', label: 'SOC Manager' },
-              { value: 'teamLeader', label: 'Team Leader' },
-              { value: 'incidentHandler', label: 'Incident Handler' },
-              { value: 'incidentManager', label: 'Incident Manager' },
-              { value: 'penTester', label: 'Penetration Tester' },
-              { value: 'detectionEngineer', label: 'Detection engineer' },
-              { value: 'automationEngineer', label: 'Automation engineer' },
-            ],
-          },
-          {
-            id: 'people.roles.otherRole',
-            label: 'Others, specify:',
-            type: QuestionType.TEXT,
-          },
-          {
-            id: 'people.roles.differentiateTiers',
-            label: 'Do you differentiate tiers within these roles?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.roles.staffed',
-            label: 'Are all roles sufficiently staffed?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.roles.hierarchy',
-            label: 'Is there a role-based hierarchy in your SOC?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.roles.documented',
-            label: 'Have you formally documented all SOC roles?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.roles.documentationElements',
-            label: 'Please specify elements in the role documentation:',
-            type: QuestionType.CHECKBOX_GROUP,
-            options: [
-              { value: 'description', label: 'Role description' },
-              { value: 'tasks', label: 'Role tasks' },
-              { value: 'responsibilities', label: 'Role responsibilities' },
-              { value: 'expectations', label: 'Role expectations' },
-              { value: 'technicalSkills', label: 'Required technical skills' },
-              { value: 'softSkills', label: 'Required soft skills' },
-              { value: 'education', label: 'Required educational level' },
-              { value: 'certifications', label: 'Required or preferred certifications' },
-            ],
-          },
-          {
-            id: 'people.roles.responsibilitiesUnderstood',
-            label: 'Are responsibilities for each role understood?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.roles.careerProgression',
-            label: 'Have you documented career progression requirements for each of these roles?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.roles.revise',
-            label: 'Do you regularly revise or update the role descriptions?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Sometimes' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Always' },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'peopleManagement',
-        name: 'People Management',
-        questions: [
-          {
-            id: 'people.management.jobRotation',
-            label: 'Do you have a job rotation plan in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.careerProgression',
-            label: 'Do you have a career progression process in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.talentManagement',
-            label: 'Do you have a talent management process in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.diversityGoals',
-            label: 'Do you have team diversity goals?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.teamGoals',
-            label: 'Have you established team goals?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.individualGoals',
-            label: 'Do you document and track individual team member goals?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.evaluateEmployees',
-            label: 'Do you periodically evaluate SOC employees?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.newHireProcess',
-            label: 'Do you have a new hire process in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.screening',
-            label: 'Are all SOC employees subjected to screening?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.satisfaction',
-            label: 'Do you measure employee satisfaction for improving the SOC?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'Never' },
-              { value: '2', label: 'Sometimes' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Always' },
-            ],
-          },
-          {
-            id: 'people.management.teambuilding',
-            label: 'Do you perform regular teambuilding exercises?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'Never' },
-              { value: '2', label: 'Sometimes' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Always' },
-            ],
-          },
-          {
-            id: 'people.management.externalTeambuilding',
-            label: 'Do you perform regular teambuilding exercises with other teams relevant to the SOC?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.management.evaluateTeam',
-            label: 'Do you periodically evaluate team performance?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-        ],
-      },
-      {
-        id: 'knowledgeManagement',
-        name: 'Knowledge Management',
-        hasCompletenessIndicator: true,
-        questions: [
-          {
-            id: 'people.knowledge.processInPlace',
-            label: 'Do you have a formal knowledge management process in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.knowledge.skillMatrix',
-            label: 'Do you have a skill matrix in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.knowledge.skillMatrixElements',
-            label: 'Please specify elements of the skill matrix:',
-            type: QuestionType.CHECKBOX_GROUP,
-            options: [
-              { value: 'allEmployees', label: 'All SOC employees' },
-              { value: 'hardSkills', label: 'Hard skills' },
-              { value: 'softSkills', label: 'Soft skills' },
-              { value: 'skillLevels', label: 'Skill levels (novice, intermediate, expert)' },
-            ],
-          },
-          {
-            id: 'people.knowledge.useOfMatrix',
-            label: 'Is the knowledge matrix actively used to determine training and education needs?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.knowledge.documentedAbilities',
-            label: 'Have you documented SOC team member abilities?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'people.knowledge.reviseProcess',
-            label: 'Do you regularly assess and revise the knowledge management process?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'Never: Documentation is never reviewed' },
-              { value: '2', label: 'Sometimes: Documentation is reviewed ad-hoc, not using a structured approach' },
-              { value: '3', label: 'Averagely: Documentation is reviewed ad-hoc, using a structured approach' },
-              { value: '4', label: 'Mostly: Documentation is regularly and informally reviewed and updated' },
-              { value: '5', label: 'Always: Documentation is regularly and formally reviewed and updated' },
-            ],
-          },
-          {
-            id: 'people.knowledge.tooling',
-            label: 'Is there effective tooling in place to support knowledge documentation and distribution?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-        ],
-      },
-    ],
-  },
-  // #################### DOMAIN 3: PROCESS ####################
-  {
-    id: 'process',
-    name: 'Process',
-    subdomains: [
-      {
-        id: 'socManagement',
-        name: 'SOC Management',
-        hasCompletenessIndicator: true,
-        questions: [
-          {
-            id: 'process.socManagement.processInPlace',
-            label: 'Is there a SOC management process in place?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'process.socManagement.elementsDocumented',
-            label: 'Are SOC management elements formally identified and documented?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'process.socManagement.elements',
-            label: 'Please specify identified SOC management elements:',
-            type: QuestionType.CHECKBOX_GROUP,
-            options: [
-              { value: 'internalRelations', label: 'Internal relationship management' },
-              { value: 'externalRelations', label: 'External relationship management' },
-              { value: 'vendorManagement', label: 'Vendor management' },
-              { value: 'csi', label: 'Continuous service improvement' },
-              { value: 'projectMethodology', label: 'Project methodology' },
-              { value: 'processDocumentation', label: 'Process documentation and diagrams' },
-              { value: 'raci', label: 'RACI matrix' },
-              { value: 'serviceCatalogue', label: 'Service Catalogue' },
-              { value: 'serviceOnboarding', label: 'Service on-boarding procedure' },
-              { value: 'serviceOffloading', label: 'Service off-loading procedure' },
-            ],
-          },
-          {
-            id: 'process.socManagement.reviewed',
-            label: 'Is the SOC management process regularly reviewed?',
-            type: QuestionType.SELECT,
-            options: [
-              { value: '1', label: 'Never' },
-              { value: '2', label: 'Sometimes' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Always' },
-            ],
-          },
-          {
-            id: 'process.socManagement.aligned',
-            label: 'Is the SOC management process aligned with all stakeholders?',
-            type: QuestionType.SELECT,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'process.socManagement.ciProcess',
-            label: 'Have you implemented a process for continuous improvement (CI)?',
-            type: QuestionType.SELECT,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'process.socManagement.ciElements',
-            label: 'Specify elements of the continuous improvement program:',
-            type: QuestionType.CHECKBOX_GROUP,
-            options: [
-              { value: 'dailyTracking', label: 'Daily progress tracking' },
-              { value: 'weeklyPlanning', label: 'Weekly planning' },
-              { value: 'backlogManagement', label: 'Backlog management' },
-              { value: 'effortEstimation', label: 'Work item effort estimation' },
-              { value: 'prioritization', label: 'Work item prioritization' },
-              { value: 'refinement', label: 'Refinement' },
-              { value: 'capacityForChange', label: 'Capacity for change' },
-            ],
-          },
-          {
-            id: 'process.socManagement.qaProcess',
-            label: 'Have you implemented a process to manage SOC quality assurance (QA)?',
-            type: QuestionType.SELECT,
-            hasImportance: true,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'process.socManagement.qaElements',
-            label: 'Please specify elements of the quality assurance program:',
-            type: QuestionType.CHECKBOX_GROUP,
-            options: [
-              { value: 'ticketQa', label: 'Ticket quality assurance' },
-              { value: 'incidentQa', label: 'Incident quality assurance' },
-              { value: 'serviceQa', label: 'Service quality assurance' },
-              { value: 'processQa', label: 'Process quality assurance' },
-              { value: 'reportQa', label: 'Report quality assurance' },
-            ],
-          },
-          {
-            id: 'process.socManagement.architectureProcess',
-            label: 'Have you implemented a SOC architecture process?',
-            type: QuestionType.SELECT,
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          {
-            id: 'process.socManagement.architectureElements',
-            label: 'Please specify elements of the SOC architecture:',
-            type: QuestionType.CHECKBOX_GROUP,
-            options: [
-              { value: 'processArchitecture', label: 'SOC process architecture' },
-              { value: 'technologyArchitecture', label: 'SOC technology architecture' },
-              { value: 'serviceArchitecture', label: 'SOC service architecture' },
-              { value: 'architectureDiagrams', label: 'Architecture diagrams' },
-              { value: 'architecturePrinciples', label: 'Architecture principles' },
-            ],
-          },
-        ],
-      },
-      // {
-      //   id: 'operationsAndFacilities',
-      //   name: 'Operations & Facilities',
-      //   questions: [ /* ... To be extracted ... */ ]
-      // },
-    ],
-  },
 ];
+
+// // src/lib/socmm-schema.ts
+
+// // ============================================================================
+// // 1. "BUILDING BLOCKS" - The Types and Constants
+// // ============================================================================
+
+// export const QuestionType = {
+//   SELECT: 'select',
+//   CHECKBOX_GROUP: 'checkbox_group',
+//   TEXT: 'text',
+//   NUMBER: 'number',
+//   //COMPLETENESS_INDICATOR: 'completeness_indicator', // ADD THIS LINE
+// } as const;
+
+// // A global constant for Importance levels
+// export const IMPORTANCE_LEVELS = [
+//   { value: 'none', label: 'None' },
+//   { value: 'low', label: 'Low' },
+//   { value: 'normal', label: 'Normal' },
+//   { value: 'high', label: 'High' },
+//   { value: 'critical', label: 'Critical' },
+// ];
+
+// export type Question = {
+//   id: string;
+//   label: string;
+//   type: (typeof QuestionType)[keyof typeof QuestionType];
+//   options?: { value: string; label: string }[];
+//   hasImportance?: boolean;
+//   evidence?: {
+//     triggerValue: string | string[];// The answer that shows the text field (e.g., '5')
+//     label: string;      // The label for the text field (e.g., 'Path to document:')
+//   };
+// };
+
+// export type Subdomain = {
+//   id: string;
+//   name: string;
+//   hasCompletenessIndicator?: boolean;
+//   questions: readonly Question[];
+// };
+
+// export type Domain = {
+//   id: string;
+//   name: string;
+//   subdomains: readonly Subdomain[];
+//   domainTooltipText?: string;   // ADD THIS LINE
+//   domainLearnMoreUrl?: string; // ADD THIS LINE
+// };
+
+// // ============================================================================
+// // 2. THE GRAND SCHEMA - The Application's Source of Truth
+// // ============================================================================
+
+// export const assessmentModel: readonly Domain[] = [
+//   // #################### DOMAIN 1: BUSINESS ####################
+//   {
+//     id: 'business',
+//     name: 'Business',
+//     domainTooltipText: 'The Business domain assesses the alignment of the SOC with the organization\'s overall goals and strategic objectives.',
+//     domainLearnMoreUrl: 'https://www.sans.org/white-papers/38197/',
+//     subdomains: [
+//       {
+//         id: 'drivers',
+//         name: 'Business Drivers',
+//         questions: [
+//           {
+//             id: 'business.drivers.identified',
+//             label: 'Have you identified the main business drivers?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Business drivers are unknown' },
+//               { value: '2', label: 'Partially: Some business drivers have been identified' },
+//               { value: '3', label: 'Averagely: Most business drivers have been identified' },
+//               { value: '4', label: 'Mostly: All business drivers are well known within the SOC' },
+//               { value: '5', label: 'Fully: Document completed, approved and formally published' },
+//             ],
+//           },
+//           {
+//             id: 'business.drivers.documented',
+//             label: 'Have you documented the main business drivers?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             evidence: {
+//               triggerValue: ['2', '3', '4', '5'],
+//               label: 'Path to document (URL or file path):',
+//             },
+//             options: [
+//               { value: '1', label: 'No: No documentation in place' },
+//               { value: '2', label: 'Partially: Some ad-hoc information across documents' },
+//               { value: '3', label: 'Averagely: Basic documentation of business drivers' },
+//               { value: '4', label: 'Mostly: Single document, full description of business drivers' },
+//               { value: '5', label: 'Fully: Document completed, approved and formally published' },
+//             ],
+//           },
+//           {
+//             id: 'business.drivers.decisionMaking',
+//             label: 'Do you use business drivers in the decision making process?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Business drivers are not part of decision making' },
+//               { value: '2', label: 'Partially: Business drivers are referred to on an ad-hoc basis' },
+//               { value: '3', label: 'Averagely: Business drivers are occasionally used in decisions' },
+//               { value: '4', label: 'Mostly: Business drivers are used in most decisions' },
+//               { value: '5', label: 'Fully: Business drivers are used in all relevant decisions' },
+//             ],
+//           },
+//           {
+//             id: 'business.drivers.serviceCatalogueAlignment',
+//             label: 'Do you regularly check if the current service catalogue is aligned with business drivers?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Service catalogue has not been checked for alignment' },
+//               { value: '2', label: 'Partially: Alignment is performed on an ad-hoc basis' },
+//               { value: '3', label: 'Averagely: Alignment was performed but not maintained' },
+//               { value: '4', label: 'Mostly: Alignment is performed and maintained regularly' },
+//               { value: '5', label: 'Fully: Every change in the catalogue is checked against drivers' },
+//             ],
+//           },
+//           {
+//             id: 'business.drivers.stakeholderValidation',
+//             label: 'Have the business drivers been validated with business stakeholders?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Business drivers have not been validated' },
+//               { value: '2', label: 'Partially: Basic awareness of SOC drivers exists among stakeholders' },
+//               { value: '3', label: 'Averagely: Stakeholders informally informed of business drivers' },
+//               { value: '4', label: 'Mostly: Alignment of SOC drivers with stakeholders is performed' },
+//               { value: '5', label: 'Fully: Business drivers are formally validated by stakeholders' },
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         id: 'customers',
+//         name: 'Customers',
+//         questions: [
+//           {
+//             id: 'business.customers.identified',
+//             label: 'Have you identified the SOC customers?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: SOC customers are not known' },
+//               { value: '2', label: 'Partially: Basic awareness of SOC customers' },
+//               { value: '3', label: 'Averagely: Some customers have been identified' },
+//               { value: '4', label: 'Mostly: Customers have mostly been identified' },
+//               { value: '5', label: 'Fully: All customers are identified, including relevance and context' },
+//             ],
+//           },
+//           {
+//             id: 'business.customers.customerTypes',
+//             label: 'Please specify your customer(s):',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'legal', label: 'Legal' },
+//               { value: 'audit', label: 'Audit' },
+//               { value: 'engineeringRnd', label: 'Engineering/R&D' },
+//               { value: 'it', label: 'IT' },
+//               { value: 'business', label: 'Business' },
+//               { value: 'external', label: 'External' },
+//               { value: 'seniorManagement', label: 'Senior Management' },
+//             ],
+//           },
+//           {
+//             id: 'business.customers.other',
+//             label: 'Other customers (specify)',
+//             type: QuestionType.TEXT,
+//           },
+//           {
+//             id: 'business.customers.documented',
+//             label: 'Have you documented the main SOC customers?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             evidence: {
+//               triggerValue: ['2', '3', '4', '5'],
+//               label: 'Path to document (URL or file path):',
+//             },
+//             options: [
+//               { value: '1', label: 'No: No documentation in place' },
+//               { value: '2', label: 'Partially: Some ad-hoc information across documents' },
+//               { value: '3', label: 'Averagely: Basic documentation of SOC customers' },
+//               { value: '4', label: 'Mostly: Single document, full description of SOC customers' },
+//               { value: '5', label: 'Fully: Document completed, approved and formally published' },
+//             ],
+//           },
+//           {
+//             id: 'business.customers.differentiatedOutput',
+//             label: 'Do you differentiate output towards these specific customers?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Output is the same for all customers' },
+//               { value: '2', label: 'Partially: Output is somewhat contextualized' },
+//               { value: '3', label: 'Averagely: Some customers receive differentiated output' },
+//               { value: '4', label: 'Mostly: All important customers receive differentiated output' },
+//               { value: '5', label: 'Fully: All customers receive specific output based on context and type' },
+//             ],
+//           },
+//           {
+//             id: 'business.customers.slas',
+//             label: 'Do you have service level agreements with these customers?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Contractual agreements not in place' },
+//               { value: '2', label: 'Partially: No contract in place, ad-hoc agreements made' },
+//               { value: '3', label: 'Averagely: Basic contract in place, not formally signed off' },
+//               { value: '4', label: 'Mostly: Contract signed, but not regularly reviewed' },
+//               { value: '5', label: 'Fully: Contract signed, approved by- and regularly reviewed with customers' },
+//             ],
+//           },
+//           {
+//             id: 'business.customers.updates',
+//             label: 'Do you regularly send updates to your customers?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'Never: No updates sent to customers' },
+//               { value: '2', label: 'Sometimes: Ad-hoc updates sent to some customers' },
+//               { value: '3', label: 'Averagely: Frequent updates sent to most customers' },
+//               { value: '4', label: 'Mostly: Periodical updates sent to all customers' },
+//               { value: '5', label: 'Always: Periodical updates sent and discussed with all customers' },
+//             ],
+//           },
+//           {
+//             id: 'business.customers.satisfaction',
+//             label: 'Do you actively measure and manage customer satisfaction?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'Never: Customer satisfaction not measured or managed' },
+//               { value: '2', label: 'Sometimes: Customer satisfaction managed in ad-hoc fashion' },
+//               { value: '3', label: 'Averagely: Customer satisfaction metrics defined, not applied structurally' },
+//               { value: '4', label: 'Mostly: Customer satisfaction measured structurally, not actively managed' },
+//               { value: '5', label: 'Always: Customer satisfaction fully managed and improved over time' },
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         id: 'charter',
+//         name: 'Charter',
+//         // REMOVED: 'hasCompletenessIndicator' is no longer here.
+//         questions: [
+//           {
+//             id: 'business.charter.exists',
+//             label: 'Does the SOC have a formal charter document in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: No charter document in place' },
+//               { value: '2', label: 'Partially: Some ad-hoc information across documents' },
+//               { value: '3', label: 'Averagely: Basic charter document created' },
+//               { value: '4', label: 'Mostly: Single charter, full description of SOC strategic elements' },
+//               { value: '5', label: 'Fully: Charter completed, approved and formally published' },
+//             ],
+//           },
+//           {
+//             id: 'business.charter.elements',
+//             label: 'Please specify elements of the charter document:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'mission', label: 'Mission' },
+//               { value: 'vision', label: 'Vision' },
+//               { value: 'strategy', label: 'Strategy' },
+//               { value: 'serviceScope', label: 'Service Scope' },
+//               { value: 'deliverables', label: 'Deliverables' },
+//               { value: 'responsibilities', label: 'Responsibilities' },
+//               { value: 'accountability', label: 'Accountability' },
+//               { value: 'operationalHours', label: 'Operational Hours' },
+//               { value: 'stakeholders', label: 'Stakeholders' },
+//               { value: 'objectivesGoals', label: 'Objectives/Goals' },
+//               { value: 'statementOfSuccess', label: 'Statement of Success' },
+//             ],
+//           },
+//           {
+//             id: 'business.charter.updated',
+//             label: 'Is the SOC charter document regularly updated?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'Never: Charter is never updated' },
+//               { value: '2', label: 'Sometimes: Charter is updated on ad-hoc basis' },
+//               { value: '3', label: 'Averagely: Charter is updated on major changes in business strategy' },
+//               { value: '4', label: 'Mostly: Charter is regularly updated' },
+//               { value: '5', label: 'Always: Charter periodically updated and realigned with business strategy' },
+//             ],
+//           },
+//           {
+//             id: 'business.charter.approved',
+//             label: 'Is The soc charter document approved by the business /CISO?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Charter is not approved' },
+//               { value: '2', label: 'Partially: Business / CISO has some awareness of the charter' },
+//               { value: '3', label: 'Averagely: Business / CISO has full awareness of the charter' },
+//               { value: '4', label: 'Mostly: Business / CISO approves the content, but not formally' },
+//               { value: '5', label: 'Fully: Charter is formally approved' },
+//             ],
+//           },
+//           {
+//             id: 'business.charter.stakeholdersFamiliar',
+//             label: 'Are all stakeholders familiar with the SOC Charter document contents?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Stakeholders are unfamiliar' },
+//               { value: '2', label: 'Partially: Some are aware of the charter' },
+//               { value: '3', label: 'Averagely: Some are aware of the charter and its contents' },
+//               { value: '4', label: 'Mostly: All stakeholders are aware, not all know its contents' },
+//               { value: '5', label: 'Fully: All stakeholders are aware of the charter and its contents' },
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         id: 'governance',
+//         name: 'Governance',
+//         hasCompletenessIndicator: true,
+//         questions: [
+//           {
+//             id: 'business.governance.processInPlace',
+//             label: 'Does the soc have a governance process in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: SOC governance process is not in place' },
+//               { value: '2', label: 'Partially: SOC governance is done in an ad hoc fashion' },
+//               { value: '3', label: 'Averagely: Several governance elements are in place, but not structurally' },
+//               { value: '4', label: 'Mostly: Formal Governance process is in place that covers most' },
+//               { value: '5', label: 'Fully: Formal governance process is in place and covers all SOC aspects.' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.elementsIdentified',
+//             label: 'Have all governance elements been identified?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: No governance elements have been identified' },
+//               { value: '2', label: 'Partially: Some governance elements are identified' },
+//               { value: '3', label: 'Averagely: Some governance elements are identified and governed actively' },
+//               { value: '4', label: 'Mostly: Most governance elements are identified and governed actively' },
+//               { value: '5', label: 'Fully: All elements are identified and actively governed' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.elements',
+//             label: 'Please specify identified governance elements:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'businessAlignment', label: 'Business alignment' },
+//               { value: 'accountability', label: 'Accountability' },
+//               { value: 'sponsorship', label: 'Sponsorship' },
+//               { value: 'mandate', label: 'Mandate' },
+//               { value: 'relationships', label: 'Relationships and third party management' },
+//               { value: 'vendorEngagement', label: 'Vendor engagement' },
+//               { value: 'serviceCommitment', label: 'Service commitment' },
+//               { value: 'projectManagement', label: 'Project/program management' },
+//               { value: 'continualImprovement', label: 'Continual improvement' },
+//               { value: 'spanOfControl', label: 'Span of control / federation governance' },
+//               { value: 'outsourcedService', label: 'Outsourced service management' },
+//               { value: 'kpisMetrics', label: 'SOC KPIs & metrics' },
+//               { value: 'riskManagement', label: 'SOC Risk management' },
+//               { value: 'customerEngagement', label: 'Customer engagement/satisfaction' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.costManagement',
+//             label: 'Is cost management in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No: Cost management is not in place' },
+//               { value: '2', label: 'Partially: Costs visible, basic budget allocation in place' },
+//               { value: '3', label: 'Averagely: Costs fully visible and mostly managed, forecasting in place' },
+//               { value: '4', label: 'Mostly: Costs fully managed, not formally aligned with business stakeholders' },
+//               { value: '5', label: 'Fully: Costs fully managed and formally aligned with business stakeholders' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.costElements',
+//             label: 'Please specify cost management elements:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'people', label: 'People cost' },
+//               { value: 'process', label: 'Process cost' },
+//               { value: 'technology', label: 'Technology cost' },
+//               { value: 'services', label: 'Services cost' },
+//               { value: 'facility', label: 'Facility cost' },
+//               { value: 'budgetForecasting', label: 'Budget forecasting' },
+//               { value: 'budgetAlignment', label: 'Budget alignment' },
+//               { value: 'roi', label: 'Return on investment' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.documented',
+//             label: 'Are all governance elements formally documented?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.meetings',
+//             label: 'Are SOC governance meetings regularly held?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.reviewed',
+//             label: 'Is the governance process regularly reviewed?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.aligned',
+//             label: 'Is the governance process aligned with all stakeholders?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.audited',
+//             label: 'Is the soc regularly audited or subjected to external assessments?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'business.governance.cooperation',
+//             label: 'Is there an active cooperation with other socs? (external)?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//         ],
+//       },
+//     ],
+//   },
+//   // #################### DOMAIN 2: PEOPLE ####################
+//   {
+//     id: 'people',
+//     name: 'People',
+//     subdomains: [
+//       {
+//         id: 'employees',
+//         name: 'Employees',
+//         questions: [
+//           {
+//             id: 'people.employees.fteCount',
+//             label: "How many FTE's are in your SOC?",
+//             type: QuestionType.NUMBER,
+//           },
+//           {
+//             id: 'people.employees.useExternal',
+//             label: 'Do you use external employees / contractors in your SOC?',
+//             type: QuestionType.SELECT,
+//             options: [
+//               { value: 'yes', label: 'Yes' },
+//               { value: 'no', label: 'No' },
+//             ],
+//           },
+//           {
+//             id: 'people.employees.externalFteCount',
+//             label: "If yes, specify the number of external FTE's:",
+//             type: QuestionType.NUMBER,
+//           },
+//           {
+//             id: 'people.employees.fteRequirements',
+//             label: 'Does the current size of the SOC meet FTE requirements?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.employees.fteRatio',
+//             label: 'Does the SOC meet requirements for internal to external employee FTE ratio?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.employees.skillsetRatio',
+//             label: 'Does the SOC meet requirements for internal to external employee skillset?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.employees.positionsFilled',
+//             label: 'Are all positions filled?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.employees.recruitmentProcess',
+//             label: 'Do you have a recruitment process in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.employees.talentAcquisition',
+//             label: 'Do you have talent acquisition in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.employees.ksaos',
+//             label: 'Do you have specific KSAOs established for SOC personnel?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.employees.psychologicallySafe',
+//             label: 'Do you actively seek to create a psychologically safe environment for SOC personnel?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         id: 'roles',
+//         name: 'Roles & Hierarchy',
+//         hasCompletenessIndicator: true,
+//         questions: [
+//           {
+//             id: 'people.roles.differentiate',
+//             label: 'Do you formally differentiate roles within the SOC?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Somewhat' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.present',
+//             label: 'Which of the following roles are present in your SOC?',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'securityAnalyst', label: 'Security Analyst' },
+//               { value: 'securityEngineer', label: 'Security / Systems Engineer' },
+//               { value: 'forensicAnalyst', label: 'Forensic Analyst' },
+//               { value: 'securityArchitect', label: 'Security Architect' },
+//               { value: 'threatIntelAnalyst', label: 'Threat Intelligence Analyst' },
+//               { value: 'dataScientist', label: 'Data Scientist' },
+//               { value: 'socManager', label: 'SOC Manager' },
+//               { value: 'teamLeader', label: 'Team Leader' },
+//               { value: 'incidentHandler', label: 'Incident Handler' },
+//               { value: 'incidentManager', label: 'Incident Manager' },
+//               { value: 'penTester', label: 'Penetration Tester' },
+//               { value: 'detectionEngineer', label: 'Detection engineer' },
+//               { value: 'automationEngineer', label: 'Automation engineer' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.otherRole',
+//             label: 'Others, specify:',
+//             type: QuestionType.TEXT,
+//           },
+//           {
+//             id: 'people.roles.differentiateTiers',
+//             label: 'Do you differentiate tiers within these roles?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.staffed',
+//             label: 'Are all roles sufficiently staffed?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.hierarchy',
+//             label: 'Is there a role-based hierarchy in your SOC?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.documented',
+//             label: 'Have you formally documented all SOC roles?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.documentationElements',
+//             label: 'Please specify elements in the role documentation:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'description', label: 'Role description' },
+//               { value: 'tasks', label: 'Role tasks' },
+//               { value: 'responsibilities', label: 'Role responsibilities' },
+//               { value: 'expectations', label: 'Role expectations' },
+//               { value: 'technicalSkills', label: 'Required technical skills' },
+//               { value: 'softSkills', label: 'Required soft skills' },
+//               { value: 'education', label: 'Required educational level' },
+//               { value: 'certifications', label: 'Required or preferred certifications' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.responsibilitiesUnderstood',
+//             label: 'Are responsibilities for each role understood?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.careerProgression',
+//             label: 'Have you documented career progression requirements for each of these roles?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.roles.revise',
+//             label: 'Do you regularly revise or update the role descriptions?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Sometimes' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Always' },
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         id: 'peopleManagement',
+//         name: 'People Management',
+//         questions: [
+//           {
+//             id: 'people.management.jobRotation',
+//             label: 'Do you have a job rotation plan in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.careerProgression',
+//             label: 'Do you have a career progression process in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.talentManagement',
+//             label: 'Do you have a talent management process in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.diversityGoals',
+//             label: 'Do you have team diversity goals?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.teamGoals',
+//             label: 'Have you established team goals?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.individualGoals',
+//             label: 'Do you document and track individual team member goals?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.evaluateEmployees',
+//             label: 'Do you periodically evaluate SOC employees?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.newHireProcess',
+//             label: 'Do you have a new hire process in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.screening',
+//             label: 'Are all SOC employees subjected to screening?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.satisfaction',
+//             label: 'Do you measure employee satisfaction for improving the SOC?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'Never' },
+//               { value: '2', label: 'Sometimes' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Always' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.teambuilding',
+//             label: 'Do you perform regular teambuilding exercises?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'Never' },
+//               { value: '2', label: 'Sometimes' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Always' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.externalTeambuilding',
+//             label: 'Do you perform regular teambuilding exercises with other teams relevant to the SOC?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.management.evaluateTeam',
+//             label: 'Do you periodically evaluate team performance?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//         ],
+//       },
+//       {
+//         id: 'knowledgeManagement',
+//         name: 'Knowledge Management',
+//         hasCompletenessIndicator: true,
+//         questions: [
+//           {
+//             id: 'people.knowledge.processInPlace',
+//             label: 'Do you have a formal knowledge management process in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.knowledge.skillMatrix',
+//             label: 'Do you have a skill matrix in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.knowledge.skillMatrixElements',
+//             label: 'Please specify elements of the skill matrix:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'allEmployees', label: 'All SOC employees' },
+//               { value: 'hardSkills', label: 'Hard skills' },
+//               { value: 'softSkills', label: 'Soft skills' },
+//               { value: 'skillLevels', label: 'Skill levels (novice, intermediate, expert)' },
+//             ],
+//           },
+//           {
+//             id: 'people.knowledge.useOfMatrix',
+//             label: 'Is the knowledge matrix actively used to determine training and education needs?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.knowledge.documentedAbilities',
+//             label: 'Have you documented SOC team member abilities?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'people.knowledge.reviseProcess',
+//             label: 'Do you regularly assess and revise the knowledge management process?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'Never: Documentation is never reviewed' },
+//               { value: '2', label: 'Sometimes: Documentation is reviewed ad-hoc, not using a structured approach' },
+//               { value: '3', label: 'Averagely: Documentation is reviewed ad-hoc, using a structured approach' },
+//               { value: '4', label: 'Mostly: Documentation is regularly and informally reviewed and updated' },
+//               { value: '5', label: 'Always: Documentation is regularly and formally reviewed and updated' },
+//             ],
+//           },
+//           {
+//             id: 'people.knowledge.tooling',
+//             label: 'Is there effective tooling in place to support knowledge documentation and distribution?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//         ],
+//       },
+//     ],
+//   },
+//   // #################### DOMAIN 3: PROCESS ####################
+//   {
+//     id: 'process',
+//     name: 'Process',
+//     subdomains: [
+//       {
+//         id: 'socManagement',
+//         name: 'SOC Management',
+//         hasCompletenessIndicator: true,
+//         questions: [
+//           {
+//             id: 'process.socManagement.processInPlace',
+//             label: 'Is there a SOC management process in place?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.elementsDocumented',
+//             label: 'Are SOC management elements formally identified and documented?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.elements',
+//             label: 'Please specify identified SOC management elements:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'internalRelations', label: 'Internal relationship management' },
+//               { value: 'externalRelations', label: 'External relationship management' },
+//               { value: 'vendorManagement', label: 'Vendor management' },
+//               { value: 'csi', label: 'Continuous service improvement' },
+//               { value: 'projectMethodology', label: 'Project methodology' },
+//               { value: 'processDocumentation', label: 'Process documentation and diagrams' },
+//               { value: 'raci', label: 'RACI matrix' },
+//               { value: 'serviceCatalogue', label: 'Service Catalogue' },
+//               { value: 'serviceOnboarding', label: 'Service on-boarding procedure' },
+//               { value: 'serviceOffloading', label: 'Service off-loading procedure' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.reviewed',
+//             label: 'Is the SOC management process regularly reviewed?',
+//             type: QuestionType.SELECT,
+//             options: [
+//               { value: '1', label: 'Never' },
+//               { value: '2', label: 'Sometimes' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Always' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.aligned',
+//             label: 'Is the SOC management process aligned with all stakeholders?',
+//             type: QuestionType.SELECT,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.ciProcess',
+//             label: 'Have you implemented a process for continuous improvement (CI)?',
+//             type: QuestionType.SELECT,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.ciElements',
+//             label: 'Specify elements of the continuous improvement program:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'dailyTracking', label: 'Daily progress tracking' },
+//               { value: 'weeklyPlanning', label: 'Weekly planning' },
+//               { value: 'backlogManagement', label: 'Backlog management' },
+//               { value: 'effortEstimation', label: 'Work item effort estimation' },
+//               { value: 'prioritization', label: 'Work item prioritization' },
+//               { value: 'refinement', label: 'Refinement' },
+//               { value: 'capacityForChange', label: 'Capacity for change' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.qaProcess',
+//             label: 'Have you implemented a process to manage SOC quality assurance (QA)?',
+//             type: QuestionType.SELECT,
+//             hasImportance: true,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.qaElements',
+//             label: 'Please specify elements of the quality assurance program:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'ticketQa', label: 'Ticket quality assurance' },
+//               { value: 'incidentQa', label: 'Incident quality assurance' },
+//               { value: 'serviceQa', label: 'Service quality assurance' },
+//               { value: 'processQa', label: 'Process quality assurance' },
+//               { value: 'reportQa', label: 'Report quality assurance' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.architectureProcess',
+//             label: 'Have you implemented a SOC architecture process?',
+//             type: QuestionType.SELECT,
+//             options: [
+//               { value: '1', label: 'No' },
+//               { value: '2', label: 'Partially' },
+//               { value: '3', label: 'Averagely' },
+//               { value: '4', label: 'Mostly' },
+//               { value: '5', label: 'Fully' },
+//             ],
+//           },
+//           {
+//             id: 'process.socManagement.architectureElements',
+//             label: 'Please specify elements of the SOC architecture:',
+//             type: QuestionType.CHECKBOX_GROUP,
+//             options: [
+//               { value: 'processArchitecture', label: 'SOC process architecture' },
+//               { value: 'technologyArchitecture', label: 'SOC technology architecture' },
+//               { value: 'serviceArchitecture', label: 'SOC service architecture' },
+//               { value: 'architectureDiagrams', label: 'Architecture diagrams' },
+//               { value: 'architecturePrinciples', label: 'Architecture principles' },
+//             ],
+//           },
+//         ],
+//       },
+//       // {
+//       //   id: 'operationsAndFacilities',
+//       //   name: 'Operations & Facilities',
+//       //   questions: [ /* ... To be extracted ... */ ]
+//       // },
+//     ],
+//   },
+// ];
