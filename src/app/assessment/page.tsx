@@ -69,12 +69,17 @@ function AssessmentContent() {
     return <div className="flex h-screen items-center justify-center">Loading assessment data...</div>;
   }
 
+  // --- THE FIX: Return ResultsPage directly to escape the centered container ---
+  if (step === 'results') {
+    return <ResultsPage />;
+  }
+
+  // --- STANDARD LAYOUT: Centered container for Profile, Dashboard, and Assessment ---
   return (
     <div className="container mx-auto max-w-5xl p-4 md:p-8">
       {step === 'profile' && <ProfileForm />}
       {step === 'dashboard' && <Dashboard />}
       {step === 'assessment' && <AssessmentForm />}
-      {step === 'results' && <ResultsPage />}
     </div>
   );
 }
