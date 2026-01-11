@@ -2618,17 +2618,18 @@ export const assessmentModel: readonly Domain[] = [
     name: 'Technology',
     domainTooltipText: 'The Technology domain assesses the tools, infrastructure, and technical capabilities (specifically SIEM) supporting the SOC.',
     subdomains: [
-      // ----------------------------------------------------------------------
-      // 4.1 SIEM Tooling
-      // ----------------------------------------------------------------------
+      // ======================================================================
+      // SUBDOMAIN 1: SIEM / UEBA (All 1.x questions go here)
+      // ======================================================================
       {
         id: 'siem',
-        name: 'SIEM Tooling',
+        name: 'SIEM / UEBA',
         questions: [
-          // 1.1 Accountability
+          // --- 1.1 Accountability ---
           {
             id: 'technology.siem.funcOwnership',
-            label: 'Has functional ownership of the solution been formally assigned?',
+            // HEADER ADDED HERE
+            label: '1.1 Accountability\n\n1.1.1 Has functional ownership of the solution been formally assigned?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2641,7 +2642,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.techOwnership',
-            label: 'Has technical ownership of the solution been formally assigned?',
+            label: '1.1.2 Has technical ownership of the solution been formally assigned?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2652,10 +2653,12 @@ export const assessmentModel: readonly Domain[] = [
               { value: '5', label: 'Fully' },
             ],
           },
-          // 1.2 Documentation
+
+          // --- 1.2 Documentation ---
           {
             id: 'technology.siem.techDoc',
-            label: 'Has the solution been technically documented?',
+            // HEADER ADDED HERE
+            label: '1.2 Documentation\n\n1.2.1 Has the solution been technically documented?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2668,7 +2671,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.funcDoc',
-            label: 'Has the solution been functionally documented?',
+            label: '1.2.2 Has the solution been functionally documented?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2679,10 +2682,12 @@ export const assessmentModel: readonly Domain[] = [
               { value: '5', label: 'Fully' },
             ],
           },
-          // 1.3 Personnel & Support
+
+          // --- 1.3 Personnel & Support ---
           {
             id: 'technology.siem.personnel',
-            label: 'Is there dedicated personnel for support?',
+            // HEADER ADDED HERE
+            label: '1.3 Personnel & Support\n\n1.3.1 Is there dedicated personnel for support?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2695,7 +2700,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.training',
-            label: 'Is the personnel for support formally trained?',
+            label: '1.3.2 Is the personnel for support formally trained?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2708,7 +2713,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.certification',
-            label: 'Is the personnel for support certified?',
+            label: '1.3.3 Is the personnel for support certified?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2721,7 +2726,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.contract',
-            label: 'Is there a support contract for the solution?',
+            label: '1.3.4 Is there a support contract for the solution?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2732,10 +2737,12 @@ export const assessmentModel: readonly Domain[] = [
               { value: '5', label: 'Fully' },
             ],
           },
-          // 1.4 Maintenance & Configuration
+
+          // --- 1.4 Maintenance ---
           {
             id: 'technology.siem.maintenance',
-            label: 'Is the system regularly maintained?',
+            // HEADER ADDED HERE
+            label: '1.4 Maintenance & Configuration\n\n1.4.1 Is the system regularly maintained?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2748,7 +2755,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.remoteMaint',
-            label: 'Is remote maintenance on the system managed?',
+            label: '1.4.2 Is remote maintenance on the system managed?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2761,7 +2768,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.changeMgmt',
-            label: 'Are maintenance & configuration updates executed through the change management process?',
+            label: '1.4.3 Are maintenance & configuration updates executed through the change management process?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2774,7 +2781,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.windows',
-            label: 'Have you established maintenance windows?',
+            label: '1.4.4 Have you established maintenance windows?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2787,21 +2794,7 @@ export const assessmentModel: readonly Domain[] = [
           },
           {
             id: 'technology.siem.trustedTooling',
-            label: 'Is maintenance performed using authorised and trusted tooling?',
-            type: QuestionType.SELECT,
-            // Note: 'Importance: true' was missing in your text for 1.4.5, so hasImportance is omitted here.
-            options: [
-              { value: '1', label: 'No' },
-              { value: '2', label: 'Partially' },
-              { value: '3', label: 'Averagely' },
-              { value: '4', label: 'Mostly' },
-              { value: '5', label: 'Fully' },
-            ],
-          },
-          // 1.5 Availability & Integrity
-          {
-            id: 'technology.siem.ha',
-            label: 'Is there high availability (HA) in place for the solution?',
+            label: '1.4.5 Is maintenance performed using authorised and trusted tooling?',
             type: QuestionType.SELECT,
             hasImportance: true,
             options: [
@@ -2811,6 +2804,6682 @@ export const assessmentModel: readonly Domain[] = [
               { value: '4', label: 'Mostly' },
               { value: '5', label: 'Fully' },
             ],
+          },
+
+          // --- 1.5 Availability ---
+          {
+            id: 'technology.siem.ha',
+            // HEADER ADDED HERE
+            label: '1.5 Availability & Integrity\n\n1.5.1 Is there high availability (HA) in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.siem.dataBackup',
+            label: '1.5.2 Is there data backup / replication in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.siem.configBackup',
+            label: '1.5.3 Is there configuration backup / replication in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.siem.drPlan',
+            label: '1.5.4 Is there a Disaster Recovery plan in place for this solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.siem.drTesting',
+            label: '1.5.5 Is the Disaster Recovery plan regularly tested?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'Never' },
+              { value: '2', label: 'Sometimes' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Always' },
+            ],
+          },
+          {
+            id: 'technology.siem.devEnv',
+            label: '1.5.6 Is there a separate development / test environment for this solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 1.6 Access ---
+          {
+            id: 'technology.siem.authorizedAccess',
+            // HEADER ADDED HERE
+            label: '1.6 Access Management\n\n1.6.1 Is access to the solution limited to authorized personnel?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.siem.accessReview',
+            label: '1.6.2 Are access rights regularly reviewed and revoked if required?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'Never' },
+              { value: '2', label: 'Sometimes' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Always' },
+            ],
+          },
+          {
+            id: 'technology.siem.breakGlass',
+            label: '1.6.3 Is a break glass procedure in place?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 1.7 Capabilities ---
+          {
+            id: 'technology.siem.subtleEvents',
+            // HEADER ADDED HERE
+            label: '1.7 Specify which technological capabilities and artefacts are present and implemented:\n\n1.7.1 Subtle event detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.autoAlerting',
+            label: '1.7.2 Automated alerting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.alertAck',
+            label: '1.7.3 Alert acknowledgement',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.caseMgmt',
+            label: '1.7.4 Case management system',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.networkModel',
+            label: '1.7.5 Network model',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.auditTrail',
+            label: '1.7.6 Detailed audit trail of analyst activities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.historicalDetect',
+            label: '1.7.7 Historical activity detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.scalableArch',
+            label: '1.7.8 Flexible and scalable architecture',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.mitreTagging',
+            label: '1.7.9 MITRE ATT&CK® identifier tagging',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          // --- Data Ingestion ---
+          {
+            id: 'technology.siem.aggregation',
+            // HEADER ADDED HERE
+            label: 'DATA INGESTION & PROCESSING\n\n1.7.10 Aggregation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.normalisation',
+            label: '1.7.11 Normalisation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.correlation',
+            label: '1.7.12 Correlation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.multiStageCorr',
+            label: '1.7.13 Multi-stage correlation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.customParsing',
+            label: '1.7.14 Custom parsing',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.apiIntegration',
+            label: '1.7.15 API integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.secureTransfer',
+            label: '1.7.16 Secure Event Transfer',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.multipleTransfer',
+            label: '1.7.17 Support for multiple event transfer technologies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          // --- Integrations ---
+          {
+            id: 'technology.siem.assetIntegration',
+            // HEADER ADDED HERE
+            label: 'INTEGRATIONS (TECHNICAL & PROCESS)\n\n1.7.18 Asset management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.businessContext',
+            label: '1.7.19 Business context integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.identityContext',
+            label: '1.7.20 Identity context integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.assetContext',
+            label: '1.7.21 Asset context integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.vulnContext',
+            label: '1.7.22 Vulnerability context integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.tiIntegration',
+            label: '1.7.23 Threat intelligence integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.threatHunting',
+            label: '1.7.24 Threat hunting integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.incidentMgmt',
+            label: '1.7.25 Security incident management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.soarIntegration',
+            label: '1.7.26 SOAR integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          // --- Rules ---
+          {
+            id: 'technology.siem.stdRules',
+            // HEADER ADDED HERE
+            label: 'RULE-BASED DETECTION\n\n1.7.27 Standard detection rules',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.customRules',
+            label: '1.7.28 Custom detection rules',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          // --- Anomalies ---
+          {
+            id: 'technology.siem.userAnomalies',
+            // HEADER ADDED HERE
+            label: 'ANOMALY DETECTION\n\n1.7.29 User anomalies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.appAnomalies',
+            label: '1.7.30 Application anomalies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.deviceAnomalies',
+            label: '1.7.31 Device anomalies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.networkAnomalies',
+            label: '1.7.32 Network anomalies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          // --- Visualisation ---
+          {
+            id: 'technology.siem.reporting',
+            // HEADER ADDED HERE
+            label: 'VISUALISATION AND OUTPUT\n\n1.7.33 Reporting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.dashboards',
+            label: '1.7.34 Dashboards',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.vizTechniques',
+            label: '1.7.35 Data visualization techniques',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.drilldowns',
+            label: '1.7.36 Data drilldowns',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.centralConsole',
+            label: '1.7.37 Central analysis console',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.siem.advancedQuerying',
+            label: '1.7.38 Advanced searching and querying',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          // --- Comments ---
+          {
+            id: 'technology.siem.comments',
+            // HEADER ADDED HERE
+            label: '1.8 Comments and/or remarks',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
+      
+      // ======================================================================
+      // SUBDOMAIN 2: NETWORK DETECTION & RESPONSE (NDR)
+      // ======================================================================
+      {
+        id: 'ndr',
+        name: 'Network Detection & Response (NDR)',
+        questions: [
+          // --- 2.1 Accountability ---
+          {
+            id: 'technology.ndr.funcOwnership', // 2.1.1
+            // Header added to label
+            label: '2.1 Accountability\n\n2.1.1 Has functional ownership of the solution been formally assigned?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.techOwnership', // 2.1.2
+            label: '2.1.2 Has technical ownership of the solution been formally assigned?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 2.2 Documentation ---
+          {
+            id: 'technology.ndr.techDoc', // 2.2.1
+            label: '2.2 Documentation\n\n2.2.1 Has the solution been technically documented?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.funcDoc', // 2.2.2
+            label: '2.2.2 Has the solution been functionally documented?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 2.3 Personnel & Support ---
+          {
+            id: 'technology.ndr.personnel', // 2.3.1
+            label: '2.3 Personnel & Support\n\n2.3.1 Is there dedicated personnel for support?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.training', // 2.3.2
+            label: '2.3.2 Is the personnel for support formally trained?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.certification', // 2.3.3
+            label: '2.3.3 Is the personnel for support certified?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.contract', // 2.3.4
+            label: '2.3.4 Is there a support contract for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 2.4 Maintenance ---
+          {
+            id: 'technology.ndr.maintenance', // 2.4.1
+            label: '2.4 Maintenance & Configuration\n\n2.4.1 Is the system regularly maintained?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.remoteMaint', // 2.4.2
+            label: '2.4.2 Is remote maintenance on the system managed?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.changeMgmt', // 2.4.3
+            label: '2.4.3 Are maintenance & configuration updates executed through the change management process?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.windows', // 2.4.4
+            label: '2.4.4 Have you established maintenance windows?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.trustedTooling', // 2.4.5
+            label: '2.4.5 Is maintenance performed using authorised and trusted tooling?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 2.5 Availability ---
+          {
+            id: 'technology.ndr.ha', // 2.5.1
+            label: '2.5 Availability & Integrity\n\n2.5.1 Is there high availability (HA) in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.dataBackup', // 2.5.2
+            label: '2.5.2 Is there data backup / replication in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.configBackup', // 2.5.3
+            label: '2.5.3 Is there configuration backup / replication in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.drPlan', // 2.5.4
+            label: '2.5.4 Is there a Disaster Recovery plan in place for this solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.drTesting', // 2.5.5
+            label: '2.5.5 Is the Disaster Recovery plan regularly tested?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'Never' },
+              { value: '2', label: 'Sometimes' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Always' },
+            ],
+          },
+          {
+            id: 'technology.ndr.devEnv', // 2.5.6
+            label: '2.5.6 Is there a separate development / test environment for this solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 2.6 Access Management ---
+          {
+            id: 'technology.ndr.authorizedAccess', // 2.6.1
+            label: '2.6 Access Management\n\n2.6.1 Is access to the solution limited to authorized personnel?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.accessReview', // 2.6.2
+            label: '2.6.2 Are access rights regularly reviewed and revoked if required?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.ndr.breakGlass', // 2.6.3
+            label: '2.6.3 Is a break glass procedure in place?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 2.7 Capabilities ---
+          {
+            id: 'technology.ndr.encryptedTraffic', // 2.7.1
+            label: '2.7 Specify which technological capabilities and artefacts are present and implemented:\n\n2.7.1 Encrypted traffic analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.idsSignature', // 2.7.2
+            label: '2.7.2 IDS signature matching',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.supervisedML', // 2.7.3
+            label: '2.7.3 Supervised machine learning',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.unsupervisedML', // 2.7.4
+            label: '2.7.4 Unsupervised machine learning',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.trafficBlocking', // 2.7.5
+            label: '2.7.5 Traffic blocking',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.unauthDevice', // 2.7.6
+            label: '2.7.6 Unauthorised device detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.mitreTagging', // 2.7.7
+            label: '2.7.7 MITRE ATT&CK® identifier tagging',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.deepPacket', // 2.7.8
+            label: '2.7.8 Deep packet inspection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.correlation', // 2.7.9
+            label: '2.7.9 Correlation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- Data Ingestion ---
+          {
+            id: 'technology.ndr.fullPacket', // 2.7.10
+            label: 'DATA INGESTION AND PROCESSING\n\n2.7.10 Full packet capture',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.flowData', // 2.7.11
+            label: '2.7.11 Flow data ingestion',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- Monitoring Capabilities ---
+          {
+            id: 'technology.ndr.northSouth', // 2.7.12
+            label: 'MONITORING CAPABILITIES\n\n2.7.12 Monitoring north - south network traffic',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.eastWest', // 2.7.13
+            label: '2.7.13 Monitoring east - west network traffic',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.classifiedSeg', // 2.7.14
+            label: '2.7.14 Monitoring classified network segements',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.cloudEnv', // 2.7.15
+            label: '2.7.15 Monitoring cloud environments',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.icsScada', // 2.7.16
+            label: '2.7.16 Monitoring ICS/SCADA networks',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.dnsTraffic', // 2.7.17
+            label: '2.7.17 Monitoring DNS traffic',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- Integrations ---
+          {
+            id: 'technology.ndr.businessContext', // 2.7.18
+            label: 'INTEGRATIONS (TECHNICAL & PROCESS)\n\n2.7.18 Business context integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.identityContext', // 2.7.19
+            label: '2.7.19 Identity context integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.threatIntel', // 2.7.20
+            label: '2.7.20 Threat Intelligence integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.threatHunting', // 2.7.21
+            label: '2.7.21 Threat hunting integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.incidentMgmt', // 2.7.22
+            label: '2.7.22 Security incident management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.siemIntegration', // 2.7.23
+            label: '2.7.23 SIEM integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.sandboxIntegration', // 2.7.24
+            label: '2.7.24 Malware sandbox integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- Rule-based Detection ---
+          {
+            id: 'technology.ndr.stdRules', // 2.7.25
+            label: 'RULE-BASED DETECTION\n\n2.7.25 Standard detection rules',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.customRules', // 2.7.26
+            label: '2.7.26 Custom detection rules',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- Anomaly Detection ---
+          {
+            id: 'technology.ndr.baselining', // 2.7.27
+            label: 'ANOMALY DETECTION\n\n2.7.27 Traffic baselining',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.patternAnalysis', // 2.7.28
+            label: '2.7.28 Pattern analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- Visualisation ---
+          {
+            id: 'technology.ndr.reporting', // 2.7.29
+            label: 'VISUALISATION AND OUTPUT\n\n2.7.29 Reporting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.dashboards', // 2.7.30
+            label: '2.7.30 Dashboards',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.vizTechniques', // 2.7.31
+            label: '2.7.31 Data visualization techniques',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.drilldowns', // 2.7.32
+            label: '2.7.32 Data drilldowns',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.centralConsole', // 2.7.33
+            label: '2.7.33 Central analysis console',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.ndr.advancedQuerying', // 2.7.34
+            label: '2.7.34 Advanced searching and querying',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- Comments ---
+          {
+            id: 'technology.ndr.comments',
+            label: '2.8 Comments and/or remarks',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
+
+      // ======================================================================
+      // SUBDOMAIN 3: ENDPOINT DETECTION & RESPONSE (EDR)
+      // ======================================================================
+      {
+        id: 'edr',
+        name: 'Endpoint Detection & Response (EDR)',
+        questions: [
+          // --- 3.1 Accountability ---
+          {
+            id: 'technology.edr.funcOwnership', // 3.1.1
+            // Header added to label
+            label: '3.1 Accountability\n\n3.1.1 Has functional ownership of the solution been formally assigned?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.techOwnership', // 3.1.2
+            label: '3.1.2 Has technical ownership of the solution been formally assigned?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 3.2 Documentation ---
+          {
+            id: 'technology.edr.techDoc', // 3.2.1
+            label: '3.2 Documentation\n\n3.2.1 Has the solution been technically documented?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.funcDoc', // 3.2.2
+            label: '3.2.2 Has the solution been functionally documented?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 3.3 Personnel & Support ---
+          {
+            id: 'technology.edr.personnel', // 3.3.1
+            label: '3.3 Personnel & Support\n\n3.3.1 Is there dedicated personnel for support?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.training', // 3.3.2
+            label: '3.3.2 Is the personnel for support formally trained?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.certification', // 3.3.3
+            label: '3.3.3 Is the personnel for support certified?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.contract', // 3.3.4
+            label: '3.3.4 Is there a support contract for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 3.4 Maintenance ---
+          {
+            id: 'technology.edr.maintenance', // 3.4.1
+            label: '3.4 Maintenance & Configuration\n\n3.4.1 Is the system regularly maintained?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.remoteMaint', // 3.4.2
+            label: '3.4.2 Is remote maintenance on the system managed?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.changeMgmt', // 3.4.3
+            label: '3.4.3 Are maintenance & configuration updates executed through the change management process?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.windows', // 3.4.4
+            label: '3.4.4 Have you established maintenance windows?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.trustedTooling', // 3.4.5
+            label: '3.4.5 Is maintenance performed using authorised and trusted tooling?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 3.5 Availability ---
+          {
+            id: 'technology.edr.ha', // 3.5.1
+            label: '3.5 Availability & Integrity\n\n3.5.1 Is there high availability (HA) in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.dataBackup', // 3.5.2
+            label: '3.5.2 Is there data backup / replication in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.configBackup', // 3.5.3
+            label: '3.5.3 Is there configuration backup / replication in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.drPlan', // 3.5.4
+            label: '3.5.4 Is there a Disaster Recovery plan in place for this solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.drTesting', // 3.5.5
+            label: '3.5.5 Is the Disaster Recovery plan regularly tested?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.devEnv', // 3.5.6
+            label: '3.5.6 Is there a separate development / test environment for this solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 3.6 Confidentiality / Access ---
+          {
+            id: 'technology.edr.authorizedAccess', // 3.6.1
+            label: '3.6 Confidentiality\n\n3.6.1 Is access to the solution limited to authorized personnel?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.accessReview', // 3.6.2
+            label: '3.6.2 Are access rights regularly reviewed and revoked if required?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.edr.breakGlass', // 3.6.3
+            label: '3.6.3 Is a break glass procedure in place?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 3.7 Capabilities: Technical ---
+          {
+            id: 'technology.edr.osSupport', // 3.7.1
+            label: '3.7 Specify which technological capabilities and artefacts are present and implemented:\n\nTECHNICAL CAPABILITIES\n\n3.7.1 OS support',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.mobileSupport', // 3.7.2
+            label: '3.7.2 Mobile device support',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.deployment', // 3.7.3
+            label: '3.7.3 Physical, virtual & cloud deployment',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.vulnPatching', // 3.7.4
+            label: '3.7.4 Vulnerability patching',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.forensicPreservation', // 3.7.5
+            label: '3.7.5 Forensic information preservation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.historicData', // 3.7.6
+            label: '3.7.6 Historic data retention',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.mitreTagging', // 3.7.7
+            label: '3.7.7 MITRE ATT&CK® identifier tagging',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.memoryAnalysis', // 3.7.8
+            label: '3.7.8 Memory analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.correlation', // 3.7.9
+            label: '3.7.9 Correlation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.7 Capabilities: Prevention ---
+          {
+            id: 'technology.edr.exploitPrev', // 3.7.10
+            label: 'PREVENTION CAPABILITIES\n\n3.7.10 Exploit prevention',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.filelessProt', // 3.7.11
+            label: '3.7.11 Fileless malware protection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.appAllowlisting', // 3.7.12
+            label: '3.7.12 Application allowlisting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.ransomwareProt', // 3.7.13
+            label: '3.7.13 Ransomware protection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.surfaceReduction', // 3.7.14
+            label: '3.7.14 Attack surface reduction',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.7 Capabilities: Detection ---
+          {
+            id: 'technology.edr.vulnDetection', // 3.7.15
+            label: 'DETECTION CAPABILITIES\n\n3.7.15 Vulnerability detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.processMonitor', // 3.7.16
+            label: '3.7.16 Process execution monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.fsMonitor', // 3.7.17
+            label: '3.7.17 File system monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.serviceMonitor', // 3.7.18
+            label: '3.7.18 Task & service monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.networkMonitor', // 3.7.19
+            label: '3.7.19 Network connection monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.registryMonitor', // 3.7.20
+            label: '3.7.20 Registry monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.userMonitor', // 3.7.21
+            label: '3.7.21 User activity monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.configMonitor', // 3.7.22
+            label: '3.7.22 Configuration monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.airgappedMonitor', // 3.7.23
+            label: '3.7.23 Air-gaped end-point monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.fileReputation', // 3.7.24
+            label: '3.7.24 File reputation service',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.deception', // 3.7.25
+            label: '3.7.25 Deception techniques',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.7 Capabilities: Remediation ---
+          {
+            id: 'technology.edr.urlFiltering', // 3.7.26
+            label: 'REMEDIATION CAPABILITIES\n\n3.7.26 URL filtering / blocking',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.webFiltering', // 3.7.27
+            label: '3.7.27 Web content filtering',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.isolation', // 3.7.28
+            label: '3.7.28 Machine isolation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.processTerm', // 3.7.29
+            label: '3.7.29 Process termination / suspension',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.fileDeletion', // 3.7.30
+            label: '3.7.30 File / registry key deletion',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.forcedLogoff', // 3.7.31
+            label: '3.7.31 Forced user logoff',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.7 Capabilities: Integrations ---
+          {
+            id: 'technology.edr.threatIntel', // 3.7.32
+            label: 'INTEGRATIONS\n\n3.7.32 Threat Intelligence integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.vulnIntel', // 3.7.33
+            label: '3.7.33 Vulnerability intelligence integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.thTTPs', // 3.7.34
+            label: '3.7.34 Threat hunting integration - TTPs',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.thTools', // 3.7.35
+            label: '3.7.35 Threat hunting integration - Tools & artifacts',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.thIndicators', // 3.7.36
+            label: '3.7.36 Threat hunting integration - Technical indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.incidentMgmt', // 3.7.37
+            label: '3.7.37 Security incident management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.siemIntegration', // 3.7.38
+            label: '3.7.38 SIEM integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.sandboxIntegration', // 3.7.39
+            label: '3.7.39 Malware sandbox integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.7 Capabilities: Rule-based ---
+          {
+            id: 'technology.edr.onlineSig', // 3.7.40
+            label: 'RULE-BASED DETECTION\n\n3.7.40 Online signature-based detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.offlineSig', // 3.7.41
+            label: '3.7.41 Offline signature-based detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.customRules', // 3.7.42
+            label: '3.7.42 Custom rules',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.7 Capabilities: Anomaly ---
+          {
+            id: 'technology.edr.behavioural', // 3.7.43
+            label: 'ANOMALY DETECTION\n\n3.7.43 Behavioural detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.7 Capabilities: Visualisation ---
+          {
+            id: 'technology.edr.reporting', // 3.7.44
+            label: 'VISUALISATION & OUTPUT\n\n3.7.44 Reporting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.dashboards', // 3.7.45
+            label: '3.7.45 Dashboards',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.vizTechniques', // 3.7.46
+            label: '3.7.46 Data visualization techniques',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.drilldowns', // 3.7.47
+            label: '3.7.47 Data drilldowns',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.centralConsole', // 3.7.48
+            label: '3.7.48 Central analysis console',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.edr.advancedQuerying', // 3.7.49
+            label: '3.7.49 Advanced searching and querying',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.8 Comments ---
+          {
+            id: 'technology.edr.comments', // 3.8
+            label: '3.8 Specify rationale for chosen values or any additional comments',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
+
+      // ======================================================================
+      // SUBDOMAIN 4: AUTOMATION & ORCHESTRATION (SOAR)
+      // ======================================================================
+      {
+        id: 'soar',
+        name: 'Automation & Orchestration (SOAR)',
+        questions: [
+          // --- 4.1 Accountability ---
+          {
+            id: 'technology.soar.funcOwnership', // 4.1.1
+            // Header added to label
+            label: '4.1 Accountability\n\n4.1.1 Has functional ownership of the solution been formally assigned?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.techOwnership', // 4.1.2
+            label: '4.1.2 Has technical ownership of the solution been formally assigned?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 4.2 Documentation ---
+          {
+            id: 'technology.soar.techDoc', // 4.2.1
+            label: '4.2 Documentation\n\n4.2.1 Has the solution been technically documented?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.funcDoc', // 4.2.2
+            label: '4.2.2 Has the solution been functionally documented?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 4.3 Personnel & Support ---
+          {
+            id: 'technology.soar.personnel', // 4.3.1
+            label: '4.3 Personnel & support\n\n4.3.1 Is there dedicated personnel for support?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.training', // 4.3.2
+            label: '4.3.2 Is the personnel for support formally trained?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.certification', // 4.3.3
+            label: '4.3.3 Is the personnel for support certified?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.contract', // 4.3.4
+            label: '4.3.4 Is there a support contract for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 4.4 Maintenance ---
+          {
+            id: 'technology.soar.maintenance', // 4.4.1
+            label: '4.4 Maintenance & configuration\n\n4.4.1 Is the system regularly maintained?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.remoteMaint', // 4.4.2
+            label: '4.4.2 Is remote maintenance on the system managed?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.changeMgmt', // 4.4.3
+            label: '4.4.3 Are maintenance & configuration updates executed through the change management process?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.windows', // 4.4.4
+            label: '4.4.4 Have you established maintenance windows?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.trustedTooling', // 4.4.5
+            label: '4.4.5 Is maintenance performed using authorised and trusted tooling?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 4.5 Availability ---
+          {
+            id: 'technology.soar.ha', // 4.5.1
+            label: '4.5 Availability & Integrity\n\n4.5.1 Is there high availability (HA) in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.dataBackup', // 4.5.2
+            label: '4.5.2 Is there data backup / replication in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.configBackup', // 4.5.3
+            label: '4.5.3 Is there configuration backup / replication in place for the solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.drPlan', // 4.5.4
+            label: '4.5.4 Is there a Disaster Recovery plan in place for this solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.drTesting', // 4.5.5
+            label: '4.5.5 Is the Disaster Recovery plan regularly tested?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.devEnv', // 4.5.6
+            label: '4.5.6 Is there a separate development / test environment for this solution?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 4.6 Confidentiality ---
+          {
+            id: 'technology.soar.authorizedAccess', // 4.6.1
+            label: '4.6 Confidentiality\n\n4.6.1 Is access to the solution limited to authorized personnel?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.accessReview', // 4.6.2
+            label: '4.6.2 Are access rights regularly reviewed and revoked if required?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'technology.soar.breakGlass', // 4.6.3
+            label: '4.6.3 Is a break glass procedure in place?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 4.7 Capabilities: Technical ---
+          {
+            id: 'technology.soar.histEventMatching', // 4.7.1
+            label: '4.7 Specify which technological capabilities and artefacts are present and implemented:\n\nTECHNICAL CAPABILITIES\n\n4.7.1 Historical event matching',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.riskPrioritization', // 4.7.2
+            label: '4.7.2 Risk-based event prioritization',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.ticketWorkflow', // 4.7.3
+            label: '4.7.3 Ticket workflow support',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 4.7 Capabilities: Data Integrations ---
+          {
+            id: 'technology.soar.siemIntegration', // 4.7.4
+            label: 'DATA INTEGRATIONS\n\n4.7.4 SIEM data integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.threatIntel', // 4.7.5
+            label: '4.7.5 Threat intelligence integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.assetContext', // 4.7.6
+            label: '4.7.6 Asset context integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.identityContext', // 4.7.7
+            label: '4.7.7 Identity context integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.vulnMgmt', // 4.7.8
+            label: '4.7.8 Vulnerability management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 4.7 Capabilities: Response Integrations ---
+          {
+            id: 'technology.soar.knowledgeBase', // 4.7.9
+            label: 'RESPONSE INTEGRATIONS\n\n4.7.9 Knowledge base integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.fwIntegration', // 4.7.10
+            label: '4.7.10 Firewall integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.ndrIntegration', // 4.7.11
+            label: '4.7.11 NDR integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.edrIntegration', // 4.7.12
+            label: '4.7.12 EDR integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.emailProt', // 4.7.13
+            label: '4.7.13 Email protection integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.malwareProt', // 4.7.14
+            label: '4.7.14 Malware protection integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.sandboxIntegration', // 4.7.15
+            label: '4.7.15 Sandbox integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.iamIntegration', // 4.7.16
+            label: '4.7.16 Active Directory / IAM integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.responseSiem', // 4.7.17 (Note: duplicate label in your list, but distinctive ID)
+            label: '4.7.17 SIEM integration (Response)',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 4.7 Capabilities: Playbooks ---
+          {
+            id: 'technology.soar.stdPlaybooks', // 4.7.18
+            label: 'PLAYBOOKS\n\n4.7.18 Standard playbooks',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.customPlaybooks', // 4.7.19
+            label: '4.7.19 Customised playbooks',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.playbookAuto', // 4.7.20
+            label: '4.7.20 Playbook automation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.playbookDev', // 4.7.21
+            label: '4.7.21 Playbook development process',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 4.7 Capabilities: Visualisation ---
+          {
+            id: 'technology.soar.reporting', // 4.7.22
+            label: 'VISUALISATION AND OUTPUT\n\n4.7.22 Reporting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.dashboards', // 4.7.23
+            label: '4.7.23 Dashboards',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'technology.soar.perfTracking', // 4.7.24
+            label: '4.7.24 Performance tracking',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 4.8 Comments ---
+          {
+            id: 'technology.soar.comments',
+            label: '4.8 Specify rationale for chosen values or any additional comments',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
+    ],
+  },
+  {
+    id: 'services',
+    name: 'Services',
+    domainTooltipText: 'The Services domain assesses the specific security services delivered by the SOC, starting with Security Monitoring.',
+    subdomains: [
+      // ======================================================================
+      // SUBDOMAIN 1: SECURITY MONITORING
+      // ======================================================================
+      {
+        id: 'security_monitoring',
+        name: 'Security Monitoring',
+        questions: [
+          // --- 1.1 Maturity ---
+          {
+            id: 'services.monitoring.formalDescription', // 1.1
+            // Header added
+            label: 'MATURITY\n\n1.1 Have you formally described the security monitoring service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 1.2 Document Elements (Broken down for Yes/No) ---
+          // The prompt asked for Yes/No options for these specific elements
+          {
+            id: 'services.monitoring.doc.kpi', // 1.2.1
+            label: '1.2 Please specify elements of the security monitoring service document:\n\nKey performance indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.quality', // 1.2.2
+            label: 'Quality indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.dependencies', // 1.2.3
+            label: 'Service dependencies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.sla', // 1.2.4
+            label: 'Service levels',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.hours', // 1.2.5
+            label: 'Hours of operation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.stakeholders', // 1.2.6
+            label: 'Service customers and stakeholders',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.purpose', // 1.2.7
+            label: 'Purpose',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.input', // 1.2.8
+            label: 'Service input / triggers',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.output', // 1.2.9
+            label: 'Service output / deliverables',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.activities', // 1.2.10
+            label: 'Service activities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.monitoring.doc.roles', // 1.2.11
+            label: 'Service roles & responsibilities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+
+          // --- 1.3 - 1.15 Maturity Continued ---
+          {
+            id: 'services.monitoring.qualityMeasure', // 1.3
+            label: '1.3 Is the service measured for quality?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.deliveryMeasure', // 1.4
+            label: '1.4 Is the service measured for service delivery in accordance with service levels?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.stakeholderUpdate', // 1.5
+            label: '1.5 Are customers and/or stakeholders regularly updated about the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.contract', // 1.6
+            label: '1.6 Is there a contractual agreement between the SOC and the customers?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.personnelAlloc', // 1.7
+            label: '1.7 Is sufficient personnel allocated to the process to ensure required service delivery?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.alignment', // 1.8
+            label: '1.8 Is the service aligned with other relevant processes?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.resolutionProcess', // 1.9
+            label: '1.9 Is there a incident resolution / service continuity process in place for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.procedures', // 1.10
+            label: '1.10 Has a set of procedures been created for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.onboarding', // 1.11
+            label: '1.11 Is there an onboarding and offloading procedure for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.bestPractices', // 1.12
+            label: '1.12 Are best practices applied to the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.useCases', // 1.13
+            label: '1.13 Are use cases used in the security monitoring service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.prediction', // 1.14
+            label: '1.14 Is process data gathered for prediction of service performance?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.monitoring.improvement', // 1.15
+            label: '1.15 Is the service continuously being improved based on improvement goals?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 1.16 Capabilities ---
+          {
+            id: 'services.monitoring.earlyDetect', // 1.16.1
+            // Header added
+            label: 'CAPABILITY\n\n1.16 Please specify capabilities of the security monitoring service:\n\n1.16.1 Early detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.intrusionDetect', // 1.16.2
+            label: '1.16.2 Intrusion detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.exfilDetect', // 1.16.3
+            label: '1.16.3 Exfiltration detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.subtleDetect', // 1.16.4
+            label: '1.16.4 Subtle event detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.malwareDetect', // 1.16.5
+            label: '1.16.5 Malware detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.anomalyDetect', // 1.16.6
+            label: '1.16.6 Anomaly detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.realtimeDetect', // 1.16.7
+            label: '1.16.7 Real-time detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.alerting', // 1.16.8
+            label: '1.16.8 Alerting & notification',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.fpReduction', // 1.16.9
+            label: '1.16.9 False-positive reduction',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.tuning', // 1.16.10
+            label: '1.16.10 Continuous tuning',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.coverage', // 1.16.11
+            label: '1.16.11 Coverage management',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.status', // 1.16.12
+            label: '1.16.12 Status monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.perimeter', // 1.16.13
+            label: '1.16.13 Perimeter monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.host', // 1.16.14
+            label: '1.16.14 Host monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.network', // 1.16.15
+            label: '1.16.15 Network & traffic monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.access', // 1.16.16
+            label: '1.16.16 Access & usage monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.identity', // 1.16.17
+            label: '1.16.17 User / identity monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.application', // 1.16.18
+            label: '1.16.18 Application & service monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.behavior', // 1.16.19
+            label: '1.16.19 Behavior monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.database', // 1.16.20
+            label: '1.16.20 Database monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.dataLoss', // 1.16.21
+            label: '1.16.21 Data loss monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.deviceLoss', // 1.16.22
+            label: '1.16.22 Device loss / theft monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.thirdParty', // 1.16.23
+            label: '1.16.23 Third-party monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.physical', // 1.16.24
+            label: '1.16.24 Physical environment monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.cloud', // 1.16.25
+            label: '1.16.25 Cloud monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.mobile', // 1.16.26
+            label: '1.16.26 Mobile device monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.monitoring.ot', // 1.16.27
+            label: '1.16.27 OT monitoring',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 1.17 Comments ---
+          {
+            id: 'services.monitoring.comments',
+            label: '1.17 Specify rationale for chosen values or any additional comments',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
+      // ======================================================================
+      // SUBDOMAIN 2: SECURITY INCIDENT MANAGEMENT
+      // ======================================================================
+      {
+        id: 'incident_management',
+        name: 'Security Incident Management',
+        questions: [
+          // --- 2.1 Maturity Assessment ---
+          {
+            id: 'services.incident.maturityMethod', // 2.1
+            // Header added
+            label: 'MATURITY\n\n2.1 Have you adopted a maturity assessment methodology for Security Incident Management?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.methodologyName', // 2.1.1
+            label: '2.1.1 If yes, please specify the methodology',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+          {
+            id: 'services.incident.maturityLevel', // 2.1.2
+            label: '2.1.2 If yes, please specify the maturity level (can have up to 2 digits)',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+
+          // --- 2.2 - 2.3 Process & Standard ---
+          {
+            id: 'services.incident.standard', // 2.2
+            label: '2.2 Have you adopted a standard for the Security Incident Management process?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.formalDescription', // 2.3
+            label: '2.3 Have you formally described the security incident management process?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 2.4 Document Elements (Yes/No Breakdown) ---
+          {
+            id: 'services.incident.doc.def', // 2.4.1
+            label: '2.4 Please specify elements of the security incident management document:\n\nSecurity incident definition',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.sla', // 2.4.2
+            label: 'Service levels',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.workflow', // 2.4.3
+            label: 'Workflow',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.decisionTree', // 2.4.4
+            label: 'Decision tree',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.hours', // 2.4.5
+            label: 'Hours of operation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.stakeholders', // 2.4.6
+            label: 'Service customers and stakeholders',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.purpose', // 2.4.7
+            label: 'Purpose',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.input', // 2.4.8
+            label: 'Service input / triggers',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.output', // 2.4.9
+            label: 'Service output / deliverables',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.activities', // 2.4.10
+            label: 'Service activities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.incident.doc.roles', // 2.4.11
+            label: 'Service roles & responsibilities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+
+          // --- 2.5 - 2.16 Maturity Continued ---
+          {
+            id: 'services.incident.qualityMeasure', // 2.5
+            label: '2.5 Is the service measured for quality?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.deliveryMeasure', // 2.6
+            label: '2.6 Is the service measured for service delivery in accordance with service levels?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.stakeholderUpdate', // 2.7
+            label: '2.7 Are customers and/or stakeholders regularly updated about the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.contract', // 2.8
+            label: '2.8 Is there a contractual agreement between the SOC and the customers?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.personnelAlloc', // 2.9
+            label: '2.9 Is sufficient personnel allocated to the process to ensure required service delivery?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.alignment', // 2.10
+            label: '2.10 Is the service aligned with other relevant processes?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.authActions', // 2.11
+            label: '2.11 Is the incident response team authorized to perform (invasive) actions when required?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.onboarding', // 2.12
+            label: '2.12 Is there an onboarding and offloading procedure for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.bestPractices', // 2.13
+            label: '2.13 Are best practices applied to the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.workflows', // 2.14
+            label: '2.14 Is the service supported by predefined workflows or scenarios?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.prediction', // 2.15
+            label: '2.15 Is process data gathered for prediction of service performance?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.incident.improvement', // 2.16
+            label: '2.16 Is the service continuously being improved based on improvement goals?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 2.17 Capabilities ---
+          {
+            id: 'services.incident.logProc', // 2.17.1
+            // Header added
+            label: 'CAPABILITY\n\n2.17 Please specify capabilities and artefacts of the security incident management service:\n\n2.17.1 Incident logging procedure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.resProc', // 2.17.2
+            label: '2.17.2 Incident resolution procedure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.invProc', // 2.17.3
+            label: '2.17.3 Incident investigation procedure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.escProc', // 2.17.4
+            label: '2.17.4 Escalation procedure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.evidenceProc', // 2.17.5
+            label: '2.17.5 Evidence collection procedure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.containmentProc', // 2.17.6
+            label: '2.17.6 Incident containment procedures',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.training', // 2.17.7
+            label: '2.17.7 IR Training',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.tabletop', // 2.17.8
+            label: '2.17.8 Table-top exercises',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.redBlueTeam', // 2.17.9
+            label: '2.17.9 Red team / blue team exercises',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.raci', // 2.17.10
+            label: '2.17.10 RACI matrix',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.auth', // 2.17.11
+            label: '2.17.11 Response authorization',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.template', // 2.17.12
+            label: '2.17.12 Incident template',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.tracking', // 2.17.13
+            label: '2.17.13 Incident tracking system',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.fpReduction', // 2.17.14
+            label: '2.17.14 False-positive reduction',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.priority', // 2.17.15
+            label: '2.17.15 Priority assignment',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.severity', // 2.17.16
+            label: '2.17.16 Severity assignment',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.cat', // 2.17.17
+            label: '2.17.17 Categorization',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.bridge', // 2.17.18
+            label: '2.17.18 Critical bridge',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.warroom', // 2.17.19
+            label: '2.17.19 War room',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.commsPlan', // 2.17.20
+            label: '2.17.20 Communication plan & email templates',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.backupComms', // 2.17.21
+            label: '2.17.21 Backup communication technology',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.secureComms', // 2.17.22
+            label: '2.17.22 Secure communication channels',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.infoSharing', // 2.17.23
+            label: '2.17.23 (dedicated) information sharing platform',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.changeMgmt', // 2.17.24
+            label: '2.17.24 Change management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.malwareAnalysis', // 2.17.25
+            label: '2.17.25 Malware extraction & analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.onsiteResp', // 2.17.26
+            label: '2.17.26 On-site incident response',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.remoteResp', // 2.17.27
+            label: '2.17.27 Remote incident response',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.thirdParty', // 2.17.28
+            label: '2.17.28 Third-party escalation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.evalTemplate', // 2.17.29
+            label: '2.17.29 Evaluation template',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.reportTemplate', // 2.17.30
+            label: '2.17.30 Reporting template',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.closure', // 2.17.31
+            label: '2.17.31 Incident closure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.lessons', // 2.17.32
+            label: '2.17.32 Lessons learned extraction for process improvement',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.externalSupport', // 2.17.33
+            label: '2.17.33 External security incident support agreements',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.exercises', // 2.17.34
+            label: '2.17.34 Exercises with other incident response teams',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.rca', // 2.17.35
+            label: '2.17.35 Root Cause Analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.incident.restore', // 2.17.36
+            label: '2.17.36 Restore integrity verification',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 2.18 Comments ---
+          {
+            id: 'services.incident.comments',
+            label: '2.18 Specify rationale for chosen values or any additional comments',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
+      // ======================================================================
+      // SUBDOMAIN 3: SECURITY ANALYSIS & FORENSICS
+      // ======================================================================
+      {
+        id: 'security_analysis',
+        name: 'Security Analysis & Forensics',
+        questions: [
+          // --- 3.1 Maturity ---
+          {
+            id: 'services.analysis.formalDescription', // 3.1
+            // Header added
+            label: 'MATURITY\n\n3.1 Have you formally described the security analysis & forensics service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 3.2 Document Elements (Yes/No Breakdown) ---
+          {
+            id: 'services.analysis.doc.kpi', // 3.2.1
+            label: '3.2 Please specify elements of the security analysis service document:\n\nKey performance indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.quality', // 3.2.2
+            label: 'Quality indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.dependencies', // 3.2.3
+            label: 'Service dependencies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.sla', // 3.2.4
+            label: 'Service levels',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.hours', // 3.2.5
+            label: 'Hours of operation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.stakeholders', // 3.2.6
+            label: 'Service customers and stakeholders',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.purpose', // 3.2.7
+            label: 'Purpose',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.input', // 3.2.8
+            label: 'Service input / triggers',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.output', // 3.2.9
+            label: 'Service output / deliverables',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.activities', // 3.2.10
+            label: 'Service activities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.analysis.doc.roles', // 3.2.11
+            label: 'Service roles & responsibilities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+
+          // --- 3.3 - 3.15 Maturity Continued ---
+          {
+            id: 'services.analysis.qualityMeasure', // 3.3
+            label: '3.3 Is the service measured for quality?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.deliveryMeasure', // 3.4
+            label: '3.4 Is the service measured for service delivery in accordance with service levels?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.stakeholderUpdate', // 3.5
+            label: '3.5 Are customers and/or stakeholders regularly updated about the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.contract', // 3.6
+            label: '3.6 Is there a contractual agreement between the SOC and the customers?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.personnelAlloc', // 3.7
+            label: '3.7 Is sufficient personnel allocated to the process to ensure required service delivery?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.alignment', // 3.8
+            label: '3.8 Is the service aligned with other relevant processes?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.resolutionProcess', // 3.9
+            label: '3.9 Is there a incident resolution / service continuity process in place for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.procedures', // 3.10
+            label: '3.10 Has a set of procedures been created for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.onboarding', // 3.11
+            label: '3.11 Is there an onboarding and offloading procedure for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.bestPractices', // 3.12
+            label: '3.12 Are best practices applied to the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.workflows', // 3.13
+            label: '3.13 Is the service supported by predefined workflows or scenarios?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.prediction', // 3.14
+            label: '3.14 Is process data gathered for prediction of service performance?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.analysis.improvement', // 3.15
+            label: '3.15 Is the service continuously being improved based on improvement goals?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 3.16 Capabilities ---
+          {
+            id: 'services.analysis.cap.eventAnalysis', // 3.16.1
+            // Header added
+            label: 'CAPABILITY\n\n3.16 Please specify capabilities and artefacts of the security analysis process:\n\n3.16.1 Event analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.toolkit', // 3.16.2
+            label: '3.16.2 Event analysis toolkit',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.trend', // 3.16.3
+            label: '3.16.3 Trend analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.incident', // 3.16.4
+            label: '3.16.4 Incident analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.visual', // 3.16.5
+            label: '3.16.5 Visual analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.staticMalware', // 3.16.6
+            label: '3.16.6 Static malware analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.dynamicMalware', // 3.16.7
+            label: '3.16.7 Dynamic malware analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.tradecraft', // 3.16.8
+            label: '3.16.8 Tradecraft analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.historic', // 3.16.9
+            label: '3.16.9 Historic analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.network', // 3.16.10
+            label: '3.16.10 Network analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.memory', // 3.16.11
+            label: '3.16.11 Memory analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.mobile', // 3.16.12
+            label: '3.16.12 Mobile device analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.volatileInfo', // 3.16.13
+            label: '3.16.13 Volatile information collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.remoteEvidence', // 3.16.14
+            label: '3.16.14 Remote evidence collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.hardwareToolkit', // 3.16.15
+            label: '3.16.15 Forensic hardware toolkit',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.softwareToolkit', // 3.16.16
+            label: '3.16.16 Forensic analysis software toolkit',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.workstations', // 3.16.17
+            label: '3.16.17 Dedicated analysis workstations',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.handbook', // 3.16.18
+            label: '3.16.18 Security analysis & forensics handbook',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.workflows', // 3.16.19
+            label: '3.16.19 Security analysis & forensics workflows',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.caseMgmt', // 3.16.20
+            label: '3.16.20 Case management system',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.reportTemplate', // 3.16.21
+            label: '3.16.21 Report templates',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.evidenceSeizure', // 3.16.22
+            label: '3.16.22 Evidence seizure procedure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.evidenceTransport', // 3.16.23
+            label: '3.16.23 Evidence transport procedure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.analysis.cap.chainCustody', // 3.16.24
+            label: '3.16.24 Chain of custody preservation procedure',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 3.17 Comments ---
+          {
+            id: 'services.analysis.comments',
+            label: '3.17 Specify rationale for chosen values or any additional comments',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
+      // ======================================================================
+      // SUBDOMAIN 4: THREAT INTELLIGENCE
+      // ======================================================================
+      {
+        id: 'threat_intelligence',
+        name: 'Threat Intelligence',
+        questions: [
+          // --- 4.1 Maturity ---
+          {
+            id: 'services.ti.formalDescription', // 4.1
+            // Header added
+            label: 'MATURITY\n\n4.1 Have you formally described the threat intelligence service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 4.2 Document Elements (Yes/No Breakdown) ---
+          {
+            id: 'services.ti.doc.kpi', // 4.2.1
+            label: '4.2 Please specify elements of the threat intelligence service document:\n\nKey performance indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.quality', // 4.2.2
+            label: 'Quality indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.dependencies', // 4.2.3
+            label: 'Service dependencies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.sla', // 4.2.4
+            label: 'Service levels',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.hours', // 4.2.5
+            label: 'Hours of operation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.stakeholders', // 4.2.6
+            label: 'Service customers and stakeholders',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.purpose', // 4.2.7
+            label: 'Purpose',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.input', // 4.2.8
+            label: 'Service input / triggers',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.output', // 4.2.9
+            label: 'Service output / deliverables',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.activities', // 4.2.10
+            label: 'Service activities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.ti.doc.roles', // 4.2.11
+            label: 'Service roles & responsibilities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+
+          // --- 4.3 - 4.14 Maturity Continued ---
+          {
+            id: 'services.ti.qualityMeasure', // 4.3
+            label: '4.3 Is the service measured for quality?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.deliveryMeasure', // 4.4
+            label: '4.4 Is the service measured for service delivery in accordance with service levels?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.stakeholderUpdate', // 4.5
+            label: '4.5 Are customers and/or stakeholders regularly updated about the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.contract', // 4.6
+            label: '4.6 Is there a contractual agreement between the SOC and the customers?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.personnelAlloc', // 4.7
+            label: '4.7 Is sufficient personnel allocated to the process to ensure required service delivery?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.alignment', // 4.8
+            label: '4.8 Is the service aligned with other relevant processes?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.resolutionProcess', // 4.9
+            label: '4.9 Is there a incident resolution / service continuity process in place for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.procedures', // 4.10
+            label: '4.10 Has a set of procedures been created for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.onboarding', // 4.11
+            label: '4.11 Is there an onboarding and offloading procedure for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.bestPractices', // 4.12
+            label: '4.12 Are best practices applied to the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.prediction', // 4.13
+            label: '4.13 Is process data gathered for prediction of service performance?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.ti.improvement', // 4.14
+            label: '4.14 Is the service continuously being improved based on improvement goals?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 4.15 Capabilities: Collection ---
+          {
+            id: 'services.ti.cap.continuous', // 4.15.1
+            // Header added
+            label: 'CAPABILITY\n\n4.15 Please specify capabilities and artefacts of the threat intelligence process:\n\nCOLLECTION\n\n4.15.1 Continuous intelligence gathering',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.automated', // 4.15.2
+            label: '4.15.2 Automated intelligence gathering & processing',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.centralized', // 4.15.3
+            label: '4.15.3 Centralized collection & distribution',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.osint', // 4.15.4
+            label: '4.15.4 Intelligence collection from open / public sources',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.closed', // 4.15.5
+            label: '4.15.5 Intelligence collection from closed communities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.provider', // 4.15.6
+            label: '4.15.6 Intelligence collection from intelligence provider',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.partners', // 4.15.7
+            label: '4.15.7 Intelligence collection from business partners',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.mailing', // 4.15.8
+            label: '4.15.8 Intelligence collection from mailing lists',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.internal', // 4.15.9
+            label: '4.15.9 Intelligence collection from internal sources',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 4.15 Capabilities: Processing ---
+          {
+            id: 'services.ti.cap.structured', // 4.15.10
+            label: 'PROCESSING\n\n4.15.10 Structured data analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.unstructured', // 4.15.11
+            label: '4.15.11 Unstructured data analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.pastIncidents', // 4.15.12
+            label: '4.15.12 Past incident analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.trend', // 4.15.13
+            label: '4.15.13 Trend analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.autoAlert', // 4.15.14
+            label: '4.15.14 Automated alerting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.adversaryTracking', // 4.15.15
+            label: '4.15.15 Adversary movement tracking',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.attackerId', // 4.15.16
+            label: '4.15.16 Attacker identification',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.threatId', // 4.15.17
+            label: '4.15.17 Threat identification',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.threatPrediction', // 4.15.18
+            label: '4.15.18 Threat prediction',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.ttp', // 4.15.19
+            label: '4.15.19 TTP extraction',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.deduplication', // 4.15.20
+            label: '4.15.20 Deduplication',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.enrichment', // 4.15.21
+            label: '4.15.21 Enrichment',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.context', // 4.15.22
+            label: '4.15.22 Contextualization',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.prioritization', // 4.15.23
+            label: '4.15.23 Prioritization',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.reporting', // 4.15.24
+            label: '4.15.24 Threat intelligence reporting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.landscaping', // 4.15.25
+            label: '4.15.25 Threat landscaping',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.forecasting', // 4.15.26
+            label: '4.15.26 Forecasting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 4.15 Capabilities: Dissemination ---
+          {
+            id: 'services.ti.cap.shareInternal', // 4.15.27
+            label: 'DISSEMINATION\n\n4.15.27 Sharing within the company',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.shareIndustry', // 4.15.28
+            label: '4.15.28 Sharing with the industry',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.shareExternal', // 4.15.29
+            label: '4.15.29 Sharing outside the industry',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.ti.cap.shareStandard', // 4.15.30
+            label: '4.15.30 Sharing in standardized format (e.g. STIX)',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 4.15 Capabilities: Infrastructure ---
+          {
+            id: 'services.ti.cap.infraMgmt', // 4.15.31
+            label: 'INFRASTRUCTURE MANAGEMENT\n\n4.15.31 Management of the CTI infrastructure (Threat Intelligence Platform)',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+        ],
+      },
+      // ======================================================================
+      // SUBDOMAIN 5: THREAT HUNTING
+      // ======================================================================
+      {
+        id: 'threat_hunting',
+        name: 'Threat Hunting',
+        questions: [
+          // --- 5.1 Maturity ---
+          {
+            id: 'services.hunting.methodology', // 5.1
+            // Header added
+            label: 'MATURITY\n\n5.1 Do you use a standardized threat hunting methodology?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.formalDescription', // 5.2
+            label: '5.2 Have you formally described the threat hunting service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 5.3 Document Elements (Yes/No Breakdown) ---
+          {
+            id: 'services.hunting.doc.kpi', // 5.3.1
+            label: '5.3 Please specify elements of the threat hunting service document:\n\nKey performance indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' }, // Mapping Yes/No to score 1/5
+            ],
+          },
+          {
+            id: 'services.hunting.doc.quality', // 5.3.2
+            label: 'Quality indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.dependencies', // 5.3.3
+            label: 'Service dependencies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.sla', // 5.3.4
+            label: 'Service levels',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.hours', // 5.3.5
+            label: 'Hours of operation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.stakeholders', // 5.3.6
+            label: 'Service customers and stakeholders',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.purpose', // 5.3.7
+            label: 'Purpose',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.input', // 5.3.8
+            label: 'Service input / triggers',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.output', // 5.3.9
+            label: 'Service output / deliverables',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.activities', // 5.3.10
+            label: 'Service activities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.hunting.doc.roles', // 5.3.11
+            label: 'Service roles & responsibilities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+
+          // --- 5.4 - 5.15 Maturity Continued ---
+          {
+            id: 'services.hunting.qualityMeasure', // 5.4
+            label: '5.4 Is the service measured for quality?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.deliveryMeasure', // 5.5
+            label: '5.5 Is the service measured for service delivery in accordance with service levels?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.stakeholderUpdate', // 5.6
+            label: '5.6 Are customers and/or stakeholders regularly updated about the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.contract', // 5.7
+            label: '5.7 Is there a contractual agreement between the SOC and the customers?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.personnelAlloc', // 5.8
+            label: '5.8 Is sufficient personnel allocated to the process to ensure required service delivery?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.alignment', // 5.9
+            label: '5.9 Is the service aligned with other relevant processes?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.resolutionProcess', // 5.10
+            label: '5.10 Is there a incident resolution / service continuity process in place for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.procedures', // 5.11
+            label: '5.11 Has a set of procedures been created for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.onboarding', // 5.12
+            label: '5.12 Is there an onboarding and offloading procedure for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.bestPractices', // 5.13
+            label: '5.13 Are best practices applied to the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.prediction', // 5.14
+            label: '5.14 Is process data gathered for prediction of service performance?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.hunting.improvement', // 5.15
+            label: '5.15 Is the service continuously being improved based on improvement goals?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 5.16 Capabilities ---
+          {
+            id: 'services.hunting.cap.hash', // 5.16.1
+            // Header added
+            label: 'CAPABILITY\n\n5.16 Please specify capabilities and artefacts of the threat hunting process:\n\n5.16.1 Hash value hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.ip', // 5.16.2
+            label: '5.16.2 IP address hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.domain', // 5.16.3
+            label: '5.16.3 Domain name hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.network', // 5.16.4
+            label: '5.16.4 Network artefact hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.host', // 5.16.5
+            label: '5.16.5 Host-based artefact hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.tools', // 5.16.6
+            label: '5.16.6 Adversary tools hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.ttp', // 5.16.7
+            label: '5.16.7 Adversary TTP hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.inbound', // 5.16.8
+            label: '5.16.8 Inbound threat hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.outbound', // 5.16.9
+            label: '5.16.9 Outbound threat hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.internal', // 5.16.10
+            label: '5.16.10 Internal threat hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.outlier', // 5.16.11
+            label: '5.16.11 Outlier detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.coverage', // 5.16.12
+            label: '5.16.12 Hunting coverage',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.tooling', // 5.16.13
+            label: '5.16.13 Leveraging of existing tooling',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.customScripts', // 5.16.14
+            label: '5.16.14 Custom hunting scripts and tools',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.platform', // 5.16.15
+            label: '5.16.15 Dedicated hunting platform',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.continuousData', // 5.16.16
+            label: '5.16.16 Continuous hunting data collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.historic', // 5.16.17
+            label: '5.16.17 Historic hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.hunting.cap.automated', // 5.16.18
+            label: '5.16.18 Automated hunting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 5.17 Comments ---
+          {
+            id: 'services.hunting.comments',
+            label: '5.17 Specify rationale for chosen values or any additional comments',
+            type: QuestionType.TEXT,
+            hasImportance: false,
           },
         ],
       },
