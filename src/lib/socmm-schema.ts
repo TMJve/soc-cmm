@@ -9483,6 +9483,1176 @@ export const assessmentModel: readonly Domain[] = [
           },
         ],
       },
+      // ======================================================================
+      // SUBDOMAIN 6: VULNERABILITY MANAGEMENT
+      // ======================================================================
+      {
+        id: 'vulnerability_management',
+        name: 'Vulnerability Management',
+        questions: [
+          // --- 6.1 Maturity ---
+          {
+            id: 'services.vm.formalDescription', // 6.1
+            // Header added
+            label: 'MATURITY\n\n6.1 Have you formally described the vulnerability management service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 6.2 Document Elements (Yes/No Breakdown) ---
+          {
+            id: 'services.vm.doc.kpi', // 6.2.1
+            label: '6.2 Please specify elements of the vulnerability management service document:\n\nKey performance indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.quality', // 6.2.2
+            label: 'Quality indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.dependencies', // 6.2.3
+            label: 'Service dependencies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.sla', // 6.2.4
+            label: 'Service levels',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.hours', // 6.2.5
+            label: 'Hours of operation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.stakeholders', // 6.2.6
+            label: 'Service customers and stakeholders',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.purpose', // 6.2.7
+            label: 'Purpose',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.input', // 6.2.8
+            label: 'Service input / triggers',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.output', // 6.2.9
+            label: 'Service output / deliverables',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.activities', // 6.2.10
+            label: 'Service activities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.vm.doc.roles', // 6.2.11
+            label: 'Service roles & responsibilities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+
+          // --- 6.3 - 6.14 Maturity Continued ---
+          {
+            id: 'services.vm.qualityMeasure', // 6.3
+            label: '6.3 Is the service measured for quality?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.deliveryMeasure', // 6.4
+            label: '6.4 Is the service measured for service delivery in accordance with service levels?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.stakeholderUpdate', // 6.5
+            label: '6.5 Are customers and/or stakeholders regularly updated about the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.contract', // 6.6
+            label: '6.6 Is there a contractual agreement between the SOC and the customers?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.personnelAlloc', // 6.7
+            label: '6.7 Is sufficient personnel allocated to the process to ensure required service delivery?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.alignment', // 6.8
+            label: '6.8 Is the service aligned with other relevant processes?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.resolutionProcess', // 6.9
+            label: '6.9 Is there a incident resolution / service continuity process in place for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.procedures', // 6.10
+            label: '6.10 Has a set of procedures been created for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.onboarding', // 6.11
+            label: '6.11 Is there an onboarding and offloading procedure for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.bestPractices', // 6.12
+            label: '6.12 Are best practices applied to the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.prediction', // 6.13
+            label: '6.13 Is process data gathered for prediction of service performance?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.vm.improvement', // 6.14
+            label: '6.14 Is the service continuously being improved based on improvement goals?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 6.15 Capabilities ---
+          {
+            id: 'services.vm.cap.networkMapping', // 6.15.1
+            // Header added
+            label: 'CAPABILITY\n\n6.15 Please specify capabilities and artefacts of the vulnerability management process:\n\n6.15.1 Network mapping',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.vulnId', // 6.15.2
+            label: '6.15.2 Vulnerability identification',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.riskId', // 6.15.3
+            label: '6.15.3 Risk identification',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.riskAccept', // 6.15.4
+            label: '6.15.4 Risk acceptance',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.baselineScan', // 6.15.5
+            label: '6.15.5 Security baseline scanning',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.authScan', // 6.15.6
+            label: '6.15.6 Authenticated scanning',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.incidentInteg', // 6.15.7
+            label: '6.15.7 Incident management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.assetInteg', // 6.15.8
+            label: '6.15.8 Asset management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.configInteg', // 6.15.9
+            label: '6.15.9 Configuration management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.patchInteg', // 6.15.10
+            label: '6.15.10 Patch management integration',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.trendId', // 6.15.11
+            label: '6.15.11 Trend identification',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.repo', // 6.15.12
+            label: '6.15.12 Enterprise vulnerability repository',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.appInventory', // 6.15.13
+            label: '6.15.13 Enterprise application inventory',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.procedures', // 6.15.14
+            label: '6.15.14 Vulnerability Management procedures',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.policyTuning', // 6.15.15
+            label: '6.15.15 Scanning policy tuning',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.detailedReport', // 6.15.16
+            label: '6.15.16 Detailed Vulnerability Reporting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.mgmtReport', // 6.15.17
+            label: '6.15.17 Management Reporting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.scheduledScan', // 6.15.18
+            label: '6.15.18 Scheduled scanning',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.adhocScan', // 6.15.19
+            label: '6.15.19 Ad-hoc specific scanning',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.vm.cap.infoGathering', // 6.15.20
+            label: '6.15.20 Vulnerability information gathering & analysis',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 6.16 Comments ---
+          {
+            id: 'services.vm.comments',
+            label: '6.16 Specify rationale for chosen values or any additional comments',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
+      // ======================================================================
+      // SUBDOMAIN 7: LOG MANAGEMENT
+      // ======================================================================
+      {
+        id: 'log_management',
+        name: 'Log Management',
+        questions: [
+          // --- 7.1 Maturity ---
+          {
+            id: 'services.log.formalDescription', // 7.1
+            // Header added
+            label: 'MATURITY\n\n7.1 Have you formally described the log management service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 7.2 Document Elements (Yes/No Breakdown) ---
+          {
+            id: 'services.log.doc.kpi', // 7.2.1
+            label: '7.2 Please specify elements of the log management service document:\n\nKey performance indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.quality', // 7.2.2
+            label: 'Quality indicators',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.dependencies', // 7.2.3
+            label: 'Service dependencies',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.sla', // 7.2.4
+            label: 'Service levels',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.hours', // 7.2.5
+            label: 'Hours of operation',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.stakeholders', // 7.2.6
+            label: 'Service customers and stakeholders',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.purpose', // 7.2.7
+            label: 'Purpose',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.input', // 7.2.8
+            label: 'Service input / triggers',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.output', // 7.2.9
+            label: 'Service output / deliverables',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.activities', // 7.2.10
+            label: 'Service activities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+          {
+            id: 'services.log.doc.roles', // 7.2.11
+            label: 'Service roles & responsibilities',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '5', label: 'Yes' },
+            ],
+          },
+
+          // --- 7.3 - 7.14 Maturity Continued ---
+          {
+            id: 'services.log.qualityMeasure', // 7.3
+            label: '7.3 Is the service measured for quality?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.deliveryMeasure', // 7.4
+            label: '7.4 Is the service measured for service delivery in accordance with service levels?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.stakeholderUpdate', // 7.5
+            label: '7.5 Are customers and/or stakeholders regularly updated about the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.contract', // 7.6
+            label: '7.6 Is there a contractual agreement between the SOC and the customers?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.personnelAlloc', // 7.7
+            label: '7.7 Is sufficient personnel allocated to the process to ensure required service delivery?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.alignment', // 7.8
+            label: '7.8 Is the service aligned with other relevant processes?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.resolutionProcess', // 7.9
+            label: '7.9 Is there a incident resolution / service continuity process in place for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.procedures', // 7.10
+            label: '7.10 Has a set of procedures been created for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.onboarding', // 7.11
+            label: '7.11 Is there an onboarding and offloading procedure for this service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.bestPractices', // 7.12
+            label: '7.12 Are best practices applied to the service?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.prediction', // 7.13
+            label: '7.13 Is process data gathered for prediction of service performance?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+          {
+            id: 'services.log.improvement', // 7.14
+            label: '7.14 Is the service continuously being improved based on improvement goals?',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+            ],
+          },
+
+          // --- 7.15 Capabilities ---
+          {
+            id: 'services.log.cap.endpoint', // 7.15.1
+            // Header added
+            label: 'CAPABILITY\n\n7.15 Please specify capabilities and artefacts of the log management process:\n\n7.15.1 End-point log collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.appLog', // 7.15.2
+            label: '7.15.2 Application log collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.dbLog', // 7.15.3
+            label: '7.15.3 Database log collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.networkFlow', // 7.15.4
+            label: '7.15.4 Network flow data collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.networkDevice', // 7.15.5
+            label: '7.15.5 Network device log collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.securityDevice', // 7.15.6
+            label: '7.15.6 Security device log collection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.aggregation', // 7.15.7
+            label: '7.15.7 Centralized aggregation and storage',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.retention', // 7.15.8
+            label: '7.15.8 Multiple retention periods',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.secureTransfer', // 7.15.9
+            label: '7.15.9 Secure log transfer',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.formats', // 7.15.10
+            label: '7.15.10 Support for multiple log formats',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.transferTech', // 7.15.11
+            label: '7.15.11 Support for multiple transfer techniques',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.normalization', // 7.15.12
+            label: '7.15.12 Data normalization',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.searchFilter', // 7.15.13
+            label: '7.15.13 Log searching and filtering',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.alerting', // 7.15.14
+            label: '7.15.14 Alerting',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.dashboards', // 7.15.15
+            label: '7.15.15 Reporting and dashboards',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.tampering', // 7.15.16
+            label: '7.15.16 Log tampering detection',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.collectionPolicy', // 7.15.17
+            label: '7.15.17 Log collection policy',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.loggingPolicy', // 7.15.18
+            label: '7.15.18 Logging policy',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.retentionPolicy', // 7.15.19
+            label: '7.15.19 Data retention policy',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+          {
+            id: 'services.log.cap.privacyPolicy', // 7.15.20
+            label: '7.15.20 Privacy and Sensitive data handling policy',
+            type: QuestionType.SELECT,
+            hasImportance: true,
+            options: [
+              { value: '1', label: 'No' },
+              { value: '2', label: 'Partially' },
+              { value: '3', label: 'Averagely' },
+              { value: '4', label: 'Mostly' },
+              { value: '5', label: 'Fully' },
+              { value: '6', label: 'Not Required' },
+            ],
+          },
+
+          // --- 7.16 Comments ---
+          {
+            id: 'services.log.comments',
+            label: '7.16 Specify rationale for chosen values or any additional comments',
+            type: QuestionType.TEXT,
+            hasImportance: false,
+          },
+        ],
+      },
     ],
   },
 ];
